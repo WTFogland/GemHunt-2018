@@ -1,5 +1,20 @@
-﻿function mainNav(control) {
-    if (control == "home") {
+﻿function runFireBase() {
+    // Initialize Firebase
+    var config = {
+        apiKey: "AIzaSyCCVTHgG_mvOSz4xI6sZsN7Ktzj1jKgONI",
+        authDomain: "gemhunt-6ce36.firebaseapp.com",
+        databaseURL: "https://gemhunt-6ce36.firebaseio.com",
+        projectId: "gemhunt-6ce36",
+        storageBucket: "gemhunt-6ce36.appspot.com",
+        messagingSenderId: "579216902744"
+    };
+    firebase.initializeApp(config);
+
+    var database = firebase.database();
+}
+
+function mainNav(control) {
+    if (control === "home") {
         document.getElementById("navBar").innerHTML = "Home";
         document.getElementById("settings").style.display = "none";
         document.getElementById("settingsNav").className = '';
@@ -9,7 +24,7 @@
         document.getElementById("pitNav").className = '';
         document.getElementById("matchscout").style.display = "none";
         document.getElementById("matchNav").className = '';
-    } else if (control == "settings") {
+    } else if (control === "settings") {
         document.getElementById("navBar").innerHTML = "Settings";
         document.getElementById("settings").style.display = "block";
         document.getElementById("settingsNav").className = 'nav-item active';
@@ -19,7 +34,7 @@
         document.getElementById("pitNav").className = '';
         document.getElementById("matchscout").style.display = "none";
         document.getElementById("matchNav").className = '';
-    } else if (control == "pitscout") {
+    } else if (control === "pitscout") {
         document.getElementById("navBar").innerHTML = "Pit Scouting";
         document.getElementById("settings").style.display = "none";
         document.getElementById("settingsNav").className = '';
@@ -30,7 +45,7 @@
         document.getElementById("matchscout").style.display = "none";
         document.getElementById("matchNav").className = '';
         topBar();
-    } else if (control == "matchscout") {
+    } else if (control === "matchscout") {
         document.getElementById("navBar").innerHTML = "Match Scouting";
         document.getElementById("settings").style.display = "none";
         document.getElementById("settingsNav").className = '';
@@ -42,7 +57,7 @@
         document.getElementById("matchNav").className = 'nav-item active';
         topBar();
     }
-};
+}
 
 function topBar() {
     var str = '<div class="row"><div class="col">' +
