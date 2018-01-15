@@ -1,29 +1,193 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html>
-    <head>
+<head>
     <!--
         Customize the content security policy in the meta tag below as needed. Add 'unsafe-inline' to default-src to enable inline JavaScript.
         For details, see http://go.microsoft.com/fwlink/?LinkID=617521
     -->
-        <meta http-equiv="Content-Security-Policy" content="default-src 'self' data: gap: https://ssl.gstatic.com 'unsafe-eval'; style-src 'self' 'unsafe-inline'; media-src *">
-        
-        <meta http-equiv="content-type" content="text/html; charset=UTF-8" />
-        <meta name="format-detection" content="telephone=no">
-        <meta name="msapplication-tap-highlight" content="no">
-        <meta name="viewport" content="user-scalable=no, initial-scale=1, maximum-scale=1, minimum-scale=1, width=device-width">
-        <link rel="stylesheet" type="text/css" href="css/index.css">
-        <title>GemHunt</title>
-    </head>
-    <body>
-        <div class="app">
-            <h1>Apache Cordova</h1>
-            <div id="deviceready" class="blink">
-                <p class="event listening">Connecting to Device</p>
-                <p class="event received">Device is Ready</p>
+
+    <meta http-equiv="content-type" content="text/html; charset=UTF-8" />
+    <meta name="format-detection" content="telephone=no">
+    <meta name="msapplication-tap-highlight" content="no">
+    <meta name="viewport" content="user-scalable=no, initial-scale=1, maximum-scale=1, minimum-scale=1, width=device-width">
+    <title>GemHunt</title>
+    <!--     Fonts and icons     -->
+    <link href="https://fonts.googleapis.com/css?family=Montserrat:400,700,200" rel="stylesheet" />
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/latest/css/font-awesome.min.css" />
+    <!-- CSS Files -->
+    <link href="assets/css/bootstrap.min.css" rel="stylesheet" />
+    <link href="assets/css/light-bootstrap-dashboard.css?v=2.0.1" rel="stylesheet" />
+</head>
+<body>
+    <div class="wrapper">
+        <div class="sidebar" data-image="assets/img/sidebar.png" data-color="red">
+            <div class="sidebar-wrapper">
+                <div class="logo">
+                    <center><img src="assets/img/gemgear.png" width="45%" height="45%" />
+                        <br/>
+                        <div style="font-size: 20pt">GemHunt</div>
+                    </center>
+                    
+                </div>
+                <ul class="nav">
+                    <li id="homeNav" class="nav-item active" onclick="mainNav('home')">
+                        <a class="nav-link">
+                            <i class="nc-icon nc-grid-45"></i>
+                            <p>Home</p>
+                        </a>
+                    </li>
+                    <li id="settingsNav" onclick="mainNav('settings')">
+                        <a class="nav-link">
+                            <i class="nc-icon nc-circle-09"></i>
+                            <p>Settings</p>
+                        </a>
+                    </li>
+                    <li id="pitNav">
+                        <a class="nav-link" onclick="mainNav('pitscout')">
+                            <i class="nc-icon nc-notes"></i>
+                            <p>Pit Scouting</p>
+                        </a>
+                    </li>
+                    <li id="matchNav">
+                        <a class="nav-link" onclick="mainNav('matchscout')">
+                            <i class="nc-icon nc-paper-2"></i>
+                            <p>Match Scouting</p>
+                        </a>
+                    </li>
+                </ul>
             </div>
         </div>
-        <script type="text/javascript" src="cordova.js"></script>
+        <div class="main-panel">
+            <!-- Navbar -->
+            <nav class="navbar navbar-expand-lg " color-on-scroll="500">
+                <div class=" container-fluid  ">
+                    <a class="navbar-brand" id="navBar"> Home </a>
+                    <button href="" class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" aria-controls="navigation-index" aria-expanded="false" aria-label="Toggle navigation">
+                        <span class="navbar-toggler-bar burger-lines"></span>
+                        <span class="navbar-toggler-bar burger-lines"></span>
+                        <span class="navbar-toggler-bar burger-lines"></span>
+                    </button>
+                </div>
+            </nav>
+            <!-- End Navbar -->
+            <div class="content" id="home">
+                <div class="container-fluid">
+                    <div class="row">
+                        <div class="col-md-4">
+                            <div class="card ">
+                                <div class="card-header ">
+                                    <h4 class="card-title">Quick Analysis</h4>
+                                    <p class="card-category">TestTest</p>
+                                </div>
+                                <div class="card-body ">
+                                    <div id="chartPreferences" class="ct-chart ct-perfect-fourth"></div>
+                                </div>
+                                <div class="card-footer ">
+                                    <hr>
+                                    <div class="stats">
+                                        <i class="fa fa-clock-o"></i> Testetestsets
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="content" id="settings" style="display: none;">
+                <div class="container-fluid">
+                    <div class="row">
+                        <div class="col-md-4">
+                            <div class="card ">
+                                <div class="card-header ">
+                                    <h4 class="card-title">Profile</h4>
+                                    <p class="card-category">Changes your name that is displayed on the data-sheet</p>
+                                </div>
+                                <div class="card-body ">
+                                    <input type="text" class="form-control" id="inputName" placeholder="Name">
+                                    <div id="chartPreferences" class="ct-chart ct-perfect-fourth"></div>
+
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="content" id="pitscout" style="display: none;">
+                <div class="container-fluid">
+                    <div class="row">
+                        <div class="col-md-4">
+                            <div class="card ">
+                                <div class="card-header ">
+                                    <h4 class="card-title"></h4>
+                                    <p class="card-category">TestTest</p>
+                                </div>
+                                <div class="card-body ">
+                                    <div id="chartPreferences" class="ct-chart ct-perfect-fourth"></div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="content" id="matchscout" style="display: none;">
+                <div class="container-fluid">
+                    <div class="row">
+                        <div class="col-md-4">
+                            <div class="card ">
+                                <div class="card-header ">
+                                    <h4 class="card-title">Match!</h4>
+                                    <p class="card-category">TestTest</p>
+                                </div>
+                                <div class="card-body ">
+                                    <div id="chartPreferences" class="ct-chart ct-perfect-fourth"></div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <footer class="footer">
+                <div class="container">
+                    <nav>
+                        <p class="copyright text-right">
+                            2018 ©
+                            Team 4362 - GEMS Robotics
+                        </p>
+                    </nav>
+                </div>
+            </footer>
+        </div>
+    </div>
+
+        <!-- GemHunt references -->
+        <script src="services/mobileApps/settings/GemHunt.js"></script>
         <script type="text/javascript" src="scripts/platformOverrides.js"></script>
-        <script type="text/javascript" src="scripts/index.js"></script>
-    </body>
+        <!--<script type="text/javascript" src="scripts/index.js"></script>-->
+        <!--   Core JS Files   -->
+        <script src="assets/js/core/jquery.3.2.1.min.js" type="text/javascript"></script>
+        <script src="assets/js/core/popper.min.js" type="text/javascript"></script>
+        <script src="assets/js/core/bootstrap.min.js" type="text/javascript"></script>
+        <!--  Plugin for Switches, full documentation here: http://www.jque.re/plugins/version3/bootstrap.switch/ -->
+        <script src="assets/js/plugins/bootstrap-switch.js"></script>
+        <!--  Chartist Plugin  -->
+        <script src="assets/js/plugins/chartist.min.js"></script>
+        <!--  Notifications Plugin    -->
+        <script src="assets/js/plugins/bootstrap-notify.js"></script>
+        <!-- Control Center for Light Bootstrap Dashboard: -->
+        <script src="assets/js/light-bootstrap-dashboard.js?v=2.0.1" type="text/javascript"></script>
+    
+        <script src="https://www.gstatic.com/firebasejs/4.8.2/firebase.js"></script>
+        <script>
+            // Initialize Firebase
+            var config = {
+                apiKey: "AIzaSyCCVTHgG_mvOSz4xI6sZsN7Ktzj1jKgONI",
+                authDomain: "gemhunt-6ce36.firebaseapp.com",
+                databaseURL: "https://gemhunt-6ce36.firebaseio.com",
+                projectId: "gemhunt-6ce36",
+                storageBucket: "gemhunt-6ce36.appspot.com",
+                messagingSenderId: "579216902744"
+            };
+            firebase.initializeApp(config);
+        </script>
+</body>
 </html>
