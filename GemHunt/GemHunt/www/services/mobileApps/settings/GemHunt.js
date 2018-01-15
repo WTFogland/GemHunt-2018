@@ -40,54 +40,55 @@
         document.getElementById("pitNav").className = '';
         document.getElementById("matchscout").style.display = "block";
         document.getElementById("matchNav").className = 'nav-item active';
+        topBar();
     }
 };
 
 function topBar() {
     var str = '<div class="row"><div class="col">' +
         '<label for="teams" class="col-sm-2 col-form-label">Team</label><select id="teams" class="form-control">' +
-        '<option> 1 </option>' +
-        '<option> 70 </option>' +
-        '<option> 245 </option>' +
-        '<option> 322 </option>' +
-        '<option> 468 </option>' +
-        '<option> 894 </option>' +
-        '<option> 1322 </option>' +
-        '<option> 2145 </option>' +
-        '<option> 3535 </option>' +
-        '<option> 3568 </option>' +
-        '<option> 4994 </option>' +
-        '<option> 5067 </option>' +
-        '<option> 5114 </option>' +
-        '<option> 5150 </option>' +
-        '<option> 5166 </option>' +
-        '<option> 5214 </option>' +
-        '<option> 5215 </option>' +
-        '<option> 5224 </option>' +
-        '<option> 5234 </option>' +
-        '<option> 5251 </option>' +
-        '<option> 5260 </option>' +
-        '<option> 5282 </option>' +
-        '<option> 5517 </option>' +
-        '<option> 5524 </option>' +
-        '<option> 5527 </option>' +
-        '<option> 5561 </option>' +
-        '<option> 5612 </option>' +
-        '<option> 5641 </option>' +
-        '<option> 5660 </option>' +
-        '<option> 5697 </option>' +
-        '<option> 6033 </option>' +
-        '<option> 6081 </option>' +
-        '<option> 6086 </option>' +
-        '<option> 6091 </option>' +
-        '<option> 6102 </option>' +
-        '<option> 6610 </option>' +
-        '<option> 7101 </option>' +
-        '<option> 7211 </option>' +
-        '<option> 7223 </option>' +
+        '<option value="1"> 1 </option>' +
+        '<option value="70"> 70 </option>' +
+        '<option value="245"> 245 </option>' +
+        '<option value="322"> 322 </option>' +
+        '<option value="468"> 468 </option>' +
+        '<option value="894"> 894 </option>' +
+        '<option value="1322"> 1322 </option>' +
+        '<option value="2145"> 2145 </option>' +
+        '<option value="3535"> 3535 </option>' +
+        '<option value="3568"> 3568 </option>' +
+        '<option value="4994"> 4994 </option>' +
+        '<option value="5067"> 5067 </option>' +
+        '<option value="5114"> 5114 </option>' +
+        '<option value="5150"> 5150 </option>' +
+        '<option value="5166"> 5166 </option>' +
+        '<option value="5214"> 5214 </option>' +
+        '<option value="5215"> 5215 </option>' +
+        '<option value="5224"> 5224 </option>' +
+        '<option value="5234"> 5234 </option>' +
+        '<option value="5251"> 5251 </option>' +
+        '<option value="5260"> 5260 </option>' +
+        '<option value="5282"> 5282 </option>' +
+        '<option value="5517"> 5517 </option>' +
+        '<option value="5524"> 5524 </option>' +
+        '<option value="5527"> 5527 </option>' +
+        '<option value="5561"> 5561 </option>' +
+        '<option value="5612"> 5612 </option>' +
+        '<option value="5641"> 5641 </option>' +
+        '<option value="5660"> 5660 </option>' +
+        '<option value="5697"> 5697 </option>' +
+        '<option value="6033"> 6033 </option>' +
+        '<option value="6081"> 6081 </option>' +
+        '<option value="6086"> 6086 </option>' +
+        '<option value="6091"> 6091 </option>' +
+        '<option value="6102"> 6102 </option>' +
+        '<option value="6610"> 6610 </option>' +
+        '<option value="7101"> 7101 </option>' +
+        '<option value="7211"> 7211 </option>' +
+        '<option value="7223"> 7223 </option>' +
         '</select ></div>';
 /*            '<div class="col"><select class="form-control">' +
-            '<option> Default select</option>' +
+            '<option value="1"> Default select</option>' +
             '</select >' + '</div></div>'; */
-        document.getElementById("navBar").innerHTML += str;
+    document.getElementById("navBar").innerHTML += str;
 }

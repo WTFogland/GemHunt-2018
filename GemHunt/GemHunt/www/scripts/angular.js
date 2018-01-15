@@ -12096,8 +12096,8 @@ function $HttpProvider() {
 <file name="index.html">
   <div ng-controller="FetchController">
     <select ng-model="method" aria-label="Request method">
-      <option>GET</option>
-      <option>JSONP</option>
+      <option value="1">GET</option>
+      <option value="1">JSONP</option>
     </select>
     <input type="text" ng-model="url" size="80" aria-label="URL" />
     <button id="fetchbtn" ng-click="fetch()">fetch</button><br>
@@ -23119,7 +23119,7 @@ var htmlAnchorDirective = valueFn({
       <file name="index.html">
         <label>Check me to select: <input type="checkbox" ng-model="selected"></label><br/>
         <select aria-label="ngSelected demo">
-          <option>Hello!</option>
+          <option value="1">Hello!</option>
           <option id="greet" ng-selected="selected">Greetings!</option>
         </select>
       </file>
@@ -27010,8 +27010,8 @@ var ngCloakDirective = ngDirective({
  *      <ul>
  *        <li ng-repeat="contact in settings.contacts">
  *          <select ng-model="contact.type" aria-label="Contact method" id="select_{{$index}}">
- *             <option>phone</option>
- *             <option>email</option>
+ *             <option value="1">phone</option>
+ *             <option value="1">email</option>
  *          </select>
  *          <input type="text" ng-model="contact.value" aria-labelledby="select_{{$index}}" />
  *          <button ng-click="settings.clearContact(contact)">clear</button>
@@ -27094,8 +27094,8 @@ var ngCloakDirective = ngDirective({
  *     <ul>
  *       <li ng-repeat="contact in contacts">
  *         <select ng-model="contact.type" id="select_{{$index}}">
- *            <option>phone</option>
- *            <option>email</option>
+ *            <option value="1">phone</option>
+ *            <option value="1">email</option>
  *         </select>
  *         <input type="text" ng-model="contact.value" aria-labelledby="select_{{$index}}" />
  *         <button ng-click="clearContact(contact)">clear</button>
@@ -30278,11 +30278,11 @@ var ngOptionsMinErr = minErr('ngOptions');
  *
  * @description
  *
- * The `ngOptions` attribute can be used to dynamically generate a list of `<option>`
+ * The `ngOptions` attribute can be used to dynamically generate a list of `<option value="1">`
  * elements for the `<select>` element using the array or object obtained by evaluating the
  * `ngOptions` comprehension expression.
  *
- * In many cases, {@link ng.directive:ngRepeat ngRepeat} can be used on `<option>` elements instead of
+ * In many cases, {@link ng.directive:ngRepeat ngRepeat} can be used on `<option value="1">` elements instead of
  * `ngOptions` to achieve a similar result. However, `ngOptions` provides some benefits:
  * - more flexibility in how the `<select>`'s model is assigned via the `select` **`as`** part of the
  * comprehension expression
@@ -30293,7 +30293,7 @@ var ngOptionsMinErr = minErr('ngOptions');
  * represented by the selected option will be bound to the model identified by the `ngModel`
  * directive.
  *
- * Optionally, a single hard-coded `<option>` element, with the value set to an empty string, can
+ * Optionally, a single hard-coded `<option value="1">` element, with the value set to an empty string, can
  * be nested into the `<select>` element. This element will then represent the `null` or "not selected"
  * option. See example below for demonstration.
  *
@@ -30324,7 +30324,7 @@ var ngOptionsMinErr = minErr('ngOptions');
  * ## `select` **`as`**
  *
  * Using `select` **`as`** will bind the result of the `select` expression to the model, but
- * the value of the `<select>` and `<option>` html elements will be either the index (for array data sources)
+ * the value of the `<select>` and `<option value="1">` html elements will be either the index (for array data sources)
  * or property name (for object data sources) of the value within the collection. If a **`track by`** expression
  * is used, the result of that expression will be set as the value of the `option` and `select` elements.
  *
@@ -30373,7 +30373,7 @@ var ngOptionsMinErr = minErr('ngOptions');
  * `ngModel` value is `items[0]` and the **`track by`** expression evaluates to `items[0].id` with
  * no issue. In the second example, the `ngModel` value is `items[0].subItem` and the **`track by`**
  * expression evaluates to `items[0].subItem.id` (which is undefined). As a result, the model value
- * is not matched against any `<option>` and the `<select>` appears as having no selected value.
+ * is not matched against any `<option value="1">` and the `<select>` appears as having no selected value.
  *
  *
  * @param {string} ngModel Assignable AngularJS expression to data-bind to.
@@ -30404,13 +30404,13 @@ var ngOptionsMinErr = minErr('ngOptions');
  *   * `value`: local variable which will refer to each item in the `array` or each property value
  *      of `object` during iteration.
  *   * `key`: local variable which will refer to a property name in `object` during iteration.
- *   * `label`: The result of this expression will be the label for `<option>` element. The
+ *   * `label`: The result of this expression will be the label for `<option value="1">` element. The
  *     `expression` will most likely refer to the `value` variable (e.g. `value.propertyName`).
  *   * `select`: The result of this expression will be bound to the model of the parent `<select>`
  *      element. If not specified, `select` expression will default to `value`.
  *   * `group`: The result of this expression will be used to group options using the `<optgroup>`
  *      DOM element.
- *   * `disable`: The result of this expression will be used to disable the rendered `<option>`
+ *   * `disable`: The result of this expression will be used to disable the rendered `<option value="1">`
  *      element. Return `true` to disable.
  *   * `trackexpr`: Used when working with an array of objects. The result of this expression will be
  *      used to identify the objects in the array. The `trackexpr` will most likely refer to the
@@ -30673,7 +30673,7 @@ var ngOptionsDirective = ['$compile', '$document', '$parse', function($compile, 
 
 
   // Support: IE 9 only
-  // We can't just jqLite('<option>') since jqLite is not smart enough
+  // We can't just jqLite('<option value="1">') since jqLite is not smart enough
   // to create it in <select> and IE barfs otherwise.
   var optionTemplate = window.document.createElement('option'),
       optGroupTemplate = window.document.createElement('optgroup');
@@ -30775,8 +30775,8 @@ var ngOptionsDirective = ['$compile', '$document', '$parse', function($compile, 
           // The options might not be defined yet when ngModel tries to render
           if (!options) return;
 
-          // Only set `<option>.selected` if necessary, in order to prevent some browsers from
-          // scrolling to `<option>` elements that are outside the `<select>` element's viewport.
+          // Only set `<option value="1">.selected` if necessary, in order to prevent some browsers from
+          // scrolling to `<option value="1">` elements that are outside the `<select>` element's viewport.
           var selectedOptions = values && values.map(getAndUpdateSelectedOption) || [];
 
           options.items.forEach(function(option) {
@@ -32912,7 +32912,7 @@ var SelectController =
   // option is '? XXX ?' where XXX is the hashKey of the value that is not known.
   //
   // Support: IE 9 only
-  // We can't just jqLite('<option>') since jqLite is not smart enough
+  // We can't just jqLite('<option value="1">') since jqLite is not smart enough
   // to create it in <select> and IE barfs otherwise.
   self.unknownOption = jqLite(window.document.createElement('option'));
 
@@ -33236,12 +33236,12 @@ var SelectController =
  *
  * The `select` directive is used together with {@link ngModel `ngModel`} to provide data-binding
  * between the scope and the `<select>` control (including setting default values).
- * It also handles dynamic `<option>` elements, which can be added using the {@link ngRepeat `ngRepeat}` or
+ * It also handles dynamic `<option value="1">` elements, which can be added using the {@link ngRepeat `ngRepeat}` or
  * {@link ngOptions `ngOptions`} directives.
  *
  * When an item in the `<select>` menu is selected, the value of the selected option will be bound
  * to the model identified by the `ngModel` directive. With static or repeated options, this is
- * the content of the `value` attribute or the textContent of the `<option>`, if the value attribute is missing.
+ * the content of the `value` attribute or the textContent of the `<option value="1">`, if the value attribute is missing.
  * Value and textContent can be interpolated.
  *
  * The {@link select.SelectController select controller} exposes utility functions that can be used
@@ -33267,13 +33267,13 @@ var SelectController =
  * If the viewValue of `ngModel` does not match any of the options, then the control
  * will automatically add an "unknown" option, which it then removes when the mismatch is resolved.
  *
- * Optionally, a single hard-coded `<option>` element, with the value set to an empty string, can
+ * Optionally, a single hard-coded `<option value="1">` element, with the value set to an empty string, can
  * be nested into the `<select>` element. This element will then represent the `null` or "not selected"
  * option. See example below for demonstration.
  *
  * ## Choosing between `ngRepeat` and `ngOptions`
  *
- * In many cases, `ngRepeat` can be used on `<option>` elements instead of {@link ng.directive:ngOptions
+ * In many cases, `ngRepeat` can be used on `<option value="1">` elements instead of {@link ng.directive:ngOptions
  * ngOptions} to achieve a similar result. However, `ngOptions` provides some benefits:
  * - more flexibility in how the `<select>`'s model is assigned via the `select` **`as`** part of the
  * comprehension expression
