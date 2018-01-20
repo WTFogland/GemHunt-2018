@@ -1,19 +1,4 @@
-﻿function runFireBase() {
-    // Initialize Firebase
-    var config = {
-        apiKey: "AIzaSyCCVTHgG_mvOSz4xI6sZsN7Ktzj1jKgONI",
-        authDomain: "gemhunt-6ce36.firebaseapp.com",
-        databaseURL: "https://gemhunt-6ce36.firebaseio.com",
-        projectId: "gemhunt-6ce36",
-        storageBucket: "gemhunt-6ce36.appspot.com",
-        messagingSenderId: "579216902744"
-    };
-    firebase.initializeApp(config);
-
-    var database = firebase.database();
-}
-
-function mainNav(control) {
+﻿function mainNav(control) {
     if (control === "home") {
         document.getElementById("navBar").innerHTML = "Home";
         document.getElementById("settings").style.display = "none";
@@ -24,6 +9,8 @@ function mainNav(control) {
         document.getElementById("pitNav").className = '';
         document.getElementById("matchscout").style.display = "none";
         document.getElementById("matchNav").className = '';
+        document.getElementById("debug").style.display = 'none';
+        document.getElementById("debugNav").className = '';
     } else if (control === "settings") {
         document.getElementById("navBar").innerHTML = "Settings";
         document.getElementById("settings").style.display = "block";
@@ -34,6 +21,8 @@ function mainNav(control) {
         document.getElementById("pitNav").className = '';
         document.getElementById("matchscout").style.display = "none";
         document.getElementById("matchNav").className = '';
+        document.getElementById("debug").style.display = 'none';
+        document.getElementById("debugNav").className = '';
     } else if (control === "pitscout") {
         document.getElementById("navBar").innerHTML = "Pit Scouting";
         document.getElementById("settings").style.display = "none";
@@ -44,7 +33,8 @@ function mainNav(control) {
         document.getElementById("pitNav").className = 'nav-item active';
         document.getElementById("matchscout").style.display = "none";
         document.getElementById("matchNav").className = '';
-        topBar();
+        document.getElementById("debug").style.display = 'none';
+        document.getElementById("debugNav").className = '';
     } else if (control === "matchscout") {
         document.getElementById("navBar").innerHTML = "Match Scouting";
         document.getElementById("settings").style.display = "none";
@@ -55,55 +45,165 @@ function mainNav(control) {
         document.getElementById("pitNav").className = '';
         document.getElementById("matchscout").style.display = "block";
         document.getElementById("matchNav").className = 'nav-item active';
-        topBar();
+        document.getElementById("debug").style.display = 'none';
+        document.getElementById("debugNav").className = '';
+    } else if (control === "debug") {
+        document.getElementById("navBar").innerHTML = "Debug";
+        document.getElementById("settings").style.display = "none";
+        document.getElementById("settingsNav").className = '';
+        document.getElementById("home").style.display = "none";
+        document.getElementById("homeNav").className = '';
+        document.getElementById("pitscout").style.display = "none";
+        document.getElementById("pitNav").className = '';
+        document.getElementById("matchscout").style.display = "none";
+        document.getElementById("matchNav").className = '';
+        document.getElementById("debug").style.display = 'block';
+        document.getElementById("debugNav").className = 'nav-item active';
     }
 }
 
-function topBar() {
-    var str = '<div class="row"><div class="col">' +
-        '<label for="teams" class="col-sm-2 col-form-label">Team</label><select id="teams" class="form-control">' +
-        '<option value="1"> 1 </option>' +
-        '<option value="70"> 70 </option>' +
-        '<option value="245"> 245 </option>' +
-        '<option value="322"> 322 </option>' +
-        '<option value="468"> 468 </option>' +
-        '<option value="894"> 894 </option>' +
-        '<option value="1322"> 1322 </option>' +
-        '<option value="2145"> 2145 </option>' +
-        '<option value="3535"> 3535 </option>' +
-        '<option value="3568"> 3568 </option>' +
-        '<option value="4994"> 4994 </option>' +
-        '<option value="5067"> 5067 </option>' +
-        '<option value="5114"> 5114 </option>' +
-        '<option value="5150"> 5150 </option>' +
-        '<option value="5166"> 5166 </option>' +
-        '<option value="5214"> 5214 </option>' +
-        '<option value="5215"> 5215 </option>' +
-        '<option value="5224"> 5224 </option>' +
-        '<option value="5234"> 5234 </option>' +
-        '<option value="5251"> 5251 </option>' +
-        '<option value="5260"> 5260 </option>' +
-        '<option value="5282"> 5282 </option>' +
-        '<option value="5517"> 5517 </option>' +
-        '<option value="5524"> 5524 </option>' +
-        '<option value="5527"> 5527 </option>' +
-        '<option value="5561"> 5561 </option>' +
-        '<option value="5612"> 5612 </option>' +
-        '<option value="5641"> 5641 </option>' +
-        '<option value="5660"> 5660 </option>' +
-        '<option value="5697"> 5697 </option>' +
-        '<option value="6033"> 6033 </option>' +
-        '<option value="6081"> 6081 </option>' +
-        '<option value="6086"> 6086 </option>' +
-        '<option value="6091"> 6091 </option>' +
-        '<option value="6102"> 6102 </option>' +
-        '<option value="6610"> 6610 </option>' +
-        '<option value="7101"> 7101 </option>' +
-        '<option value="7211"> 7211 </option>' +
-        '<option value="7223"> 7223 </option>' +
-        '</select ></div>';
-/*            '<div class="col"><select class="form-control">' +
-            '<option value="1"> Default select</option>' +
-            '</select >' + '</div></div>'; */
-    document.getElementById("navBar").innerHTML += str;
+
+function fillData() {
+    document.getElementById("scoutNameD").innerHTML = document.getElementById("scoutName").value;
+    document.getElementById("teamNumD").innerHTML = document.getElementById("teams").value;
+    document.getElementById("matchNumD").innerHTML = document.getElementById("matchNums").value;
+    document.getElementById("allianceCatD").innerHTML = document.getElementById("allianceCat").value;
+
+    if (document.getElementById("leftStart").checked) {
+        document.getElementById("setupD").innerHTML = "Left of Exchange";
+    }
+    else if (document.getElementById("centerStart").checked) {
+        document.getElementById("setupD").innerHTML = "Center";
+    }
+    else if (document.getElementById("rightStart").checked) {
+        document.getElementById("setupD").innerHTML = "Right of Exchange";
+    } else {
+        document.getElementById("setupD").innerHTML = "Not in Play";
+    }
+
+    var strAuton;
+    var noAuto = '';
+    var moveAuto = '';
+    var switchAuto = '';
+    var scaleAuto = '';
+
+    if (document.getElementById("noAuto").checked) {
+        noAuto = "No Auton";
+    }
+
+    if (document.getElementById("moveAuto").checked) {
+        moveAuto = "Moved";
+    }
+
+    if (document.getElementById("switchAuto").checked) {
+        switchAuto = "Switch";
+    }
+
+    if (document.getElementById("scaleAuto").checked) {
+        scaleAuto = "Scale";
+    }
+
+    strAuton = noAuto + " " + moveAuto + " " + switchAuto + " " + scaleAuto;
+
+    document.getElementById("autonD").innerHTML = strAuton;
+}
+
+var ExportButtons;
+var exportData;
+var instance;
+
+function saveTable() {
+    ExportButtons = document.getElementsByTagName('table');
+
+    instance = new TableExport(ExportButtons, {
+        formats: ['csv'],
+        headers: true,
+        filename: 'Team ' + document.getElementById("teams").value + ' Match ' + document.getElementById("matchNums").value,
+        exportButtons: false
+    });
+
+    //                                        // "id" of selector    // format
+    exportData = instance.getExportData()['dataTable']['csv'];
+
+    var XLSbutton = document.getElementById('export');
+
+    XLSbutton.addEventListener('click', function (e) {
+        //                   // data          // mime              // name              // extension
+        instance.export2file(exportData.data, exportData.mimeType, exportData.filename, exportData.fileExtension);
+    });
+}
+
+function exportTable() {
+    console.log("Exporting..");
+}
+
+var counter,
+    time = 0,
+    sec = document.getElementById("sec"),
+    min = document.getElementById("min"),
+    start = document.getElementById("start"),
+    reset = document.getElementById("reset"),
+    stop = document.getElementById("stop");
+
+start.addEventListener("click", function () {
+    toggle();
+    counter = setInterval(count, 1000);
+});
+
+stop.addEventListener("click", function () {
+    toggle();
+    clearInterval(counter);
+});
+
+reset.addEventListener("click", function () {
+    time = 0;
+    sec.innerHTML = time % 60;
+    min.innerHTML = Math.floor(time / 60);
+});
+
+function count() {
+    if (time === 150) {
+        sec.innerHTML = 0;
+        min.innerHTML = 0;
+        toggle();
+        clearInterval(counter);
+    } else {
+        time++;
+        sec.innerHTML = time % 60;
+        min.innerHTML = Math.floor(time / 60);
+    }
+}
+
+function toggle() {
+    if (start.disabled) {
+        start.disabled = false;
+        stop.disabled = true;
+    } else {
+        start.disabled = true;
+        stop.disabled = false;
+    }
+};
+
+function insertTime(logType) {
+
+    document.getElementById("timeBody").innerHTML += '<td>' +
+        logType +
+        '</td><td>' +
+        document.getElementById("min").innerHTML +
+        ":" +
+        document.getElementById("sec").innerHTML;
+
+}
+
+function clearFields() {
+    $('input[type=checkbox]').each(function () {
+        this.checked = false;
+    });
+
+    var mainCells = 10;
+    var totalRows = document.getElementById("dataTable").rows.length;
+
+        for (i = totalRows; i >= mainCells; i--) {
+            document.getElementById("dataTable").deleteRow(i - 1);
+        }
 }

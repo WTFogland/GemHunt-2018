@@ -129,6 +129,7 @@ h6,
     text-transform: uppercase;
 }
 
+
 p {
     font-size: 16px;
     line-height: 1.5;
@@ -224,7 +225,7 @@ a:focus {
     text-decoration: none;
 }
 
-a:focus,
+/*a:focus,
 a:active,
 button::-moz-focus-inner,
 input::-moz-focus-inner,
@@ -234,7 +235,7 @@ input[type="submit"]::-moz-focus-inner,
 select::-moz-focus-inner,
 input[type="file"]>input[type="button"]::-moz-focus-inner {
     outline: 0;
-}
+}*/
 
 .ui-slider-handle:focus,
 .navbar-toggle,
@@ -875,19 +876,19 @@ body>.navbar-collapse[data-color="purple"]:after {
     justify-content: space-between;
 }
 
-.modal .modal-content .modal-footer .btn {
+.modal .modal-content .modal-footer {
     margin: 0;
     padding-left: 16px;
     padding-right: 16px;
     width: auto;
 }
 
-.modal .modal-content .modal-footer .btn:hover,
-.modal .modal-content .modal-footer .btnfocus {
+.modal .modal-content .modal-footer,
+.modal .modal-content .modal-footer {
     text-decoration: none;
 }
 
-.btn {
+/*.btn {
     border-width: 2px;
     background-color: transparent;
     font-weight: 400;
@@ -1513,7 +1514,7 @@ fieldset[disabled] .btn-neutral.active {
     opacity: 1 !important;
     border-color: #3b5998;
     color: #3b5998;
-}
+}*/
 
 .form-control::-moz-placeholder {
     color: #DDDDDD;

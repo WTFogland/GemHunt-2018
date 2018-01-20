@@ -1,11 +1,6 @@
 ﻿<!DOCTYPE html>
 <html>
 <head>
-    <!--
-        Customize the content security policy in the meta tag below as needed. Add 'unsafe-inline' to default-src to enable inline JavaScript.
-        For details, see http://go.microsoft.com/fwlink/?LinkID=617521
-    -->
-
     <meta http-equiv="content-type" content="text/html; charset=UTF-8" />
     <meta name="format-detection" content="telephone=no">
     <meta name="msapplication-tap-highlight" content="no">
@@ -18,7 +13,7 @@
     <link href="assets/css/bootstrap.min.css" rel="stylesheet" />
     <link href="assets/css/light-bootstrap-dashboard.css?v=2.0.1" rel="stylesheet" />
 </head>
-<body>
+<body onload="onLoad()">
     <div class="wrapper">
         <div class="sidebar" data-image="assets/img/sidebar.png" data-color="red">
             <div class="sidebar-wrapper">
@@ -54,6 +49,12 @@
                             <p>Match Scouting</p>
                         </a>
                     </li>
+                    <li id="debugNav">
+                        <a class="nav-link" onclick="mainNav('debug')">
+                            <i class="nc-icon nc-badge"></i>
+                            <p>Debug</p>
+                        </a>
+                    </li>
                 </ul>
             </div>
         </div>
@@ -62,13 +63,13 @@
             <nav class="navbar navbar-expand-lg " color-on-scroll="500">
                 <div class=" container-fluid  ">
                     <a class="navbar-brand" id="navBar"> Home </a>
-                    <button href="" class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" aria-controls="navigation-index" aria-expanded="false" aria-label="Toggle navigation">
-                        <span class="navbar-toggler-bar burger-lines"></span>
-                        <span class="navbar-toggler-bar burger-lines"></span>
-                        <span class="navbar-toggler-bar burger-lines"></span>
-                    </button>
-                </div>
-            </nav>
+                        <button href="" class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" aria-controls="navigation-index" aria-expanded="false" aria-label="Toggle navigation">
+                            <span class="navbar-toggler-bar burger-lines"></span>
+                            <span class="navbar-toggler-bar burger-lines"></span>
+                            <span class="navbar-toggler-bar burger-lines"></span>
+                        </button>
+                    </div>
+</nav>
             <!-- End Navbar -->
             <div class="content" id="home">
                 <div class="container-fluid">
@@ -103,7 +104,7 @@
                                     <p class="card-category">Changes your name that is displayed on the data-sheet</p>
                                 </div>
                                 <div class="card-body ">
-                                    <input type="text" class="form-control" id="inputName" placeholder="Name">
+                                    <input type="text" class="form-control" id="scoutName" placeholder="Name" onchange="fillData();">
                                     <div id="chartPreferences" class="ct-chart ct-perfect-fourth"></div>
 
                                 </div>
@@ -138,47 +139,186 @@
                                 </div>
                                 <div class="card-body ">
                                     <div class="row">
-                                        <div class="col-6">
+                                        <div class="col-8">
                                             <form>
                                                 <div class="row">
                                                     <div class="col">
+                                                        <h4>Team #</h4>
+                                                        <select id="teams" class="form-control" style="width: 120px;" onclick="fillData();">
+                                                            <option value="1"> 1 </option>
+
+                                                            <option value="70"> 70 </option>
+
+                                                            <option value="245"> 245 </option>
+
+                                                            <option value="322"> 322 </option>
+
+                                                            <option value="468"> 468 </option>
+
+                                                            <option value="894"> 894 </option>
+
+                                                            <option value="1322"> 1322 </option>
+
+                                                            <option value="2145"> 2145 </option>
+
+                                                            <option value="3535"> 3535 </option>
+
+                                                            <option value="3568"> 3568 </option>
+
+                                                            <option value="4994"> 4994 </option>
+
+                                                            <option value="5067"> 5067 </option>
+
+                                                            <option value="5114"> 5114 </option>
+
+                                                            <option value="5150"> 5150 </option>
+
+                                                            <option value="5166"> 5166 </option>
+
+                                                            <option value="5214"> 5214 </option>
+
+                                                            <option value="5215"> 5215 </option>
+
+                                                            <option value="5224"> 5224 </option>
+
+                                                            <option value="5234"> 5234 </option>
+
+                                                            <option value="5251"> 5251 </option>
+
+                                                            <option value="5260"> 5260 </option>
+
+                                                            <option value="5282"> 5282 </option>
+
+                                                            <option value="5517"> 5517 </option>
+
+                                                            <option value="5524"> 5524 </option>
+
+                                                            <option value="5527"> 5527 </option>
+
+                                                            <option value="5561"> 5561 </option>
+
+                                                            <option value="5612"> 5612 </option>
+
+                                                            <option value="5641"> 5641 </option>
+
+                                                            <option value="5660"> 5660 </option>
+
+                                                            <option value="5697"> 5697 </option>
+
+                                                            <option value="6033"> 6033 </option>
+
+                                                            <option value="6081"> 6081 </option>
+
+                                                            <option value="6086"> 6086 </option>
+
+                                                            <option value="6091"> 6091 </option>
+
+                                                            <option value="6102"> 6102 </option>
+
+                                                            <option value="6610"> 6610 </option>
+
+                                                            <option value="7101"> 7101 </option>
+
+                                                            <option value="7211"> 7211 </option>
+
+                                                            <option value="7223"> 7223 </option>
+                                                        </select>
+
                                                         <h4>Setup</h4>
-                                                        <input id="leftStart" type="checkbox" class="form-check-inline" style="transform: scale(1.3);" /> Left
-                                                        <input id="centerStart" type="checkbox" class="form-check-inline" style="transform: scale(1.3);" /> Center
-                                                        <input id="rightStart" type="checkbox" class="form-check-inline" style="transform: scale(1.3);" /> Right
-                                                        <br />
-                                                        <br />
+                                                        <input id="leftStart" type="checkbox" class="form-check-inline" style="transform: scale(1.3);" onclick="fillData();"/> Left
+                                                        <input id="centerStart" type="checkbox" class="form-check-inline" style="transform: scale(1.3);" onclick="fillData();"/> Center
+                                                        <input id="rightStart" type="checkbox" class="form-check-inline" style="transform: scale(1.3);" onclick="fillData();"/> Right
+                                                        <br/>
+                                                        <br/>
                                                         <h4>Autonomous</h4>
-                                                        <input id="noAuto" type="checkbox" class="form-check-inline" style="transform: scale(1.3);" /> None
-                                                        <input id="moveAuto" type="checkbox" class="form-check-inline" style="transform: scale(1.3);" /> Move
-                                                        <input id="switchAuto" type="checkbox" class="form-check-inline" style="transform: scale(1.3);" /> Switch
-                                                        <input id="scaleAuto" type="checkbox" class="form-check-inline" style="transform: scale(1.3);" /> Scale
-                                                        <br />
-                                                        <br />
+                                                        <input id="noAuto" type="checkbox" class="form-check-inline" style="transform: scale(1.3);" onclick="fillData();"/> None
+                                                        <input id="moveAuto" type="checkbox" class="form-check-inline" style="transform: scale(1.3);" onclick="fillData();"/> Move
+                                                        <input id="switchAuto" type="checkbox" class="form-check-inline" style="transform: scale(1.3);" onclick="fillData();"/> Switch
+                                                        <input id="scaleAuto" type="checkbox" class="form-check-inline" style="transform: scale(1.3);" onclick="fillData();"/> Scale
+                                                        <br/>
+                                                        <br/>
                                                         <label>Two Cube?:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</label>
-                                                        <input id="tcNo" type="checkbox" class="form-check-inline" style="transform: scale(1.3);" /> N/A
-                                                        <input id="tcSwitch" type="checkbox" class="form-check-inline" style="transform: scale(1.3);" /> Switch
-                                                        <input id="tcScale" type="checkbox" class="form-check-inline" style="transform: scale(1.3);" /> Scale
-                                                        <input id="tcPickup" type="checkbox" class="form-check-inline" style="transform: scale(1.3);" /> Pickup
+                                                        <input id="tcNo" type="checkbox" class="form-check-inline" style="transform: scale(1.3);" onclick="fillData();"/> N/A
+                                                        <input id="tcSwitch" type="checkbox" class="form-check-inline" style="transform: scale(1.3);" onclick="fillData();"/> Switch
+                                                        <input id="tcScale" type="checkbox" class="form-check-inline" style="transform: scale(1.3);" onclick="fillData();"/> Scale
+                                                        <input id="tcPickup" type="checkbox" class="form-check-inline" style="transform: scale(1.3);" onclick="fillData();"/> Pickup
                                                         <br/>
                                                         <br/>
                                                         <label>Location Acquired?:&nbsp;&nbsp;&nbsp;&nbsp;</label>
-                                                        <input id="tcPC" type="checkbox" class="form-check-inline" style="transform: scale(1.3);" /> PC Zone
-                                                        <input id="tcPlat" type="checkbox" class="form-check-inline" style="transform: scale(1.3);" /> Platform
-                                                        <input id="tcAlli" type="checkbox" class="form-check-inline" style="transform: scale(1.3);" /> Alliance
+                                                        <input id="tcPC" type="checkbox" class="form-check-inline" style="transform: scale(1.3);" onclick="fillData();"/> PC Zone
+                                                        <input id="tcPlat" type="checkbox" class="form-check-inline" style="transform: scale(1.3);" onclick="fillData();"/> Platform
+                                                        <input id="tcAlli" type="checkbox" class="form-check-inline" style="transform: scale(1.3);" onclick="fillData();"/> Alliance
                                                     </div>
                                                 </div>
                                             </form>
-                                            <br/>
-                                            <img src="assets/img/field.png" class="img-fluid"/>
-                                            
+                                            <br />
+                                            <img src="assets/img/field.png" class="img-fluid" />
+                                            <br />
+                                            <center>
+                                                <button type="button" onclick="insertTime('Defended');" class="btn btn-secondary">Defended</button>
+                                                <button type="button" onclick="insertTime('Defending');" class="btn btn-secondary">Defending</button>
+                                                <button type="button" onclick="insertTime('Disabled');" class="btn btn-secondary">Disabled</button>
+                                                <br /><br />
+                                                <button type="button" onclick="insertTime('Upper Scale');" class="btn btn-dark">Upper Scale</button>
+                                                <button type="button" onclick="insertTime('Lower Scale');" class="btn btn-dark">Lower Scale</button>
+                                                <div class="container">
+                                                    <div class="row">
+                                                        <div class="col-sm">
+                                                            <h4>Zone 1</h4>
+                                                            <button id="pBlueUpper" onclick="insertTime('Blue Portal Top'); "type="button" class="btn btn-info">Portal Upper</button>
+                                                            <br />
+                                                            <br />
+                                                            <button id="exchangeRed" onclick="insertTime('Red Exchange');" type="button" class="btn btn-danger">Exchange Zone</button>
+                                                            <br />
+                                                            <br />
+                                                            <button id="pBlueLower" onclick="insertTime('Blue Portal Bottom');" type="button" class="btn btn-info">Portal Lower</button>
+                                                        </div>
+                                                        <div class="col-sm">
+                                                            <h4>Zone 2</h4>
+                                                            <button id="pcRed" onclick="insertTime('Red PC Zone');" type="button" class="btn btn-danger">PC Zone</button>
+                                                            <br />
+                                                            <br />
+                                                            <button id="switchUpperLS" onclick="insertTime('Switch Upper LS');" type="button" class="btn btn-dark">Switch Upper</button>
+                                                            <br />
+                                                            <br />
+                                                            <button id="switchLowerLS" onclick="insertTime('Switch Lower LS');" type="button" class="btn btn-dark">Switch Lower</button>
+                                                            <br />
+                                                            <br />
+                                                            <button id="redPlatCube" onclick="insertTime('Red Plat Cube');" type="button" class="btn btn-danger">Plat Cube</button>
+                                                        </div>
+                                                        <div class="col-sm">
+                                                            <h4>Zone 3</h4>
+                                                            <button id="pcBlue" onclick="insertTime('Blue PC Zone');" type="button" class="btn btn-info">PC Zone</button>
+                                                            <br />
+                                                            <br />
+                                                            <button id="switchUpperRS" onclick="insertTime('Switch Upper RS');" type="button" class="btn btn-dark">Switch Upper</button>
+                                                            <br />
+                                                            <br />
+                                                            <button id="switchLowerRS" onclick="insertTime('Switch Lower RS');" type="button" class="btn btn-dark">Switch Lower</button>
+                                                            <br />
+                                                            <br />
+                                                            <button id="bluePlatCube" onclick="insertTime('Blue Plat Cube');" type="button" class="btn btn-info">Plat Cube</button>
+                                                        </div>
+                                                        <div class="col-sm">
+                                                            <h4>Zone 4</h4>
+                                                            <button id="pRedUpper" onclick="insertTime('Red Portal Upper');" type="button" class="btn btn-danger">Portal Upper</button>
+                                                            <br />
+                                                            <br />
+                                                            <button id="exchangeBlue" onclick="insertTime('Blue Exchange Zone');" type="button" class="btn btn-info">Exchange Zone</button>
+                                                            <br />
+                                                            <br />
+                                                            <button id="pRedLower" onclick="insertTime('Red Portal Lower');" type="button" class="btn btn-danger">Portal Lower</button>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </center>
                                             <form>
                                                 <div class="row">
                                                     <div class="col">
                                                         <h4>Tele-Op</h4>
                                                         <label>Climb?:&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;</label>
                                                         <input id="rampClimb" type="checkbox" class="form-check-inline" style="transform: scale(1.3);" /> Ramp Bot
-                                                        <input id ="climber" type="checkbox" class="form-check-inline" style="transform: scale(1.3);" /> Climber
+                                                        <input id="climber" type="checkbox" class="form-check-inline" style="transform: scale(1.3);" /> Climber
                                                         <input id="climbOther" type="checkbox" class="form-check-inline" style="transform: scale(1.3);" /> Climb on Other
                                                         <input id="rampOther" type="checkbox" class="form-check-inline" style="transform: scale(1.3);" /> Ramp on Other
                                                         <input id="parkOther" type="checkbox" class="form-check-inline" style="transform: scale(1.3);" /> Park
@@ -188,16 +328,175 @@
                                                 </div>
                                             </form>
                                         </div>
-                                        <div class="col-4">
-                                            <h4>Alliance</h4>
-                                            <div style="width: 100px;">
-                                                <select class="form-control">
-                                                    <option value="blue">Blue</option>
-                                                    <option value="red">Red</option>
-                                                </select>
-                                            </div>
+                                    <div class="col-4">
+                                        <center>
+                                            <p style="font-size: 60pt;"><span id="min">0</span>:<span id="sec">00</span></p>
+                                            <button class="btn btn-success btn-lg" id="start">Start</button>
+                                            <button class="btn btn-danger btn-lg" id="stop" disabled>Stop</button>
+                                            <button class="btn btn-dark btn-lg" id="reset">Reset</button>
+                                        </center>
+
+                                        <h4>Alliance</h4>
+                                        <div style="width: 100px;">
+                                            <select class="form-control" id="allianceCat" onchange="fillData();">
+                                                <option value="Blue">Blue</option>
+                                                <option value="Red">Red</option>
+                                            </select>
+                                            <h4>Match #</h4>
+                                            <select class="form-control" id="matchNums" onchange="fillData();">
+                                                <option value="1">1</option>
+                                                <option value="2">2</option>
+                                                <option value="3">3</option>
+                                                <option value="4">4</option>
+                                                <option value="5">5</option>
+                                                <option value="6">6</option>
+                                                <option value="7">7</option>
+                                                <option value="8">8</option>
+                                                <option value="9">9</option>
+                                                <option value="10">10</option>
+                                                <option value="11">11</option>
+                                                <option value="12">12</option>
+                                                <option value="13">13</option>
+                                                <option value="14">14</option>
+                                                <option value="15">15</option>
+                                                <option value="16">16</option>
+                                                <option value="17">17</option>
+                                                <option value="18">18</option>
+                                                <option value="19">19</option>
+                                                <option value="20">20</option>
+                                                <option value="21">21</option>
+                                                <option value="22">22</option>
+                                                <option value="23">23</option>
+                                                <option value="24">24</option>
+                                                <option value="25">25</option>
+                                                <option value="26">26</option>
+                                                <option value="27">27</option>
+                                                <option value="28">28</option>
+                                                <option value="29">29</option>
+                                                <option value="30">30</option>
+                                                <option value="31">31</option>
+                                                <option value="32">32</option>
+                                                <option value="33">33</option>
+                                                <option value="34">34</option>
+                                                <option value="35">35</option>
+                                                <option value="36">36</option>
+                                                <option value="37">37</option>
+                                                <option value="38">38</option>
+                                                <option value="39">39</option>
+                                                <option value="40">40</option>
+                                                <option value="41">41</option>
+                                                <option value="42">42</option>
+                                                <option value="43">43</option>
+                                                <option value="44">44</option>
+                                                <option value="45">45</option>
+                                                <option value="46">46</option>
+                                                <option value="47">47</option>
+                                                <option value="48">48</option>
+                                                <option value="49">49</option>
+                                                <option value="50">50</option>
+                                                <option value="51">51</option>
+                                                <option value="52">52</option>
+                                                <option value="53">53</option>
+                                                <option value="54">54</option>
+                                                <option value="55">55</option>
+                                                <option value="56">56</option>
+                                                <option value="57">57</option>
+                                                <option value="58">58</option>
+                                                <option value="59">59</option>
+                                                <option value="60">60</option>
+                                                <option value="61">61</option>
+                                                <option value="62">62</option>
+                                                <option value="63">63</option>
+                                                <option value="64">64</option>
+                                                <option value="65">65</option>
+                                                <option value="66">66</option>
+                                                <option value="67">67</option>
+                                                <option value="68">68</option>
+                                                <option value="69">69</option>
+                                                <option value="70">70</option>
+                                                <option value="71">71</option>
+                                                <option value="72">72</option>
+                                                <option value="73">73</option>
+                                                <option value="74">74</option>
+                                                <option value="75">75</option>
+                                                <option value="76">76</option>
+                                            </select>
+
+                                            <br />
+                                            
                                         </div>
+                                        <center>
+                                            <button type="button" id="save" class="btn btn-success btn-lg btn-block" onclick="saveTable();">Save</button>
+                                            <button type="button" id="export" class="btn btn-success btn-lg btn-block">Export</button>
+                                            <button type="button" id="restartFields" class="btn btn-dark btn-lg btn-block" onclick="clearFields();">New/Reset Fields</button>
+                                        </center>
+                                        
                                     </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="content" id="debug" style="display: none;">
+                <div class="container-fluid">
+                    <div class="row">
+                        <div class="col-5">
+                            <div class="card ">
+                                <div class="card-header ">
+                                    <h4 class="card-title">Data Table</h4>
+                                    <p class="card-category">All info from inputs will show up here</p>
+                                </div>
+                                <div class="card-body">
+                                    <table class="table" id="dataTable">
+
+                                        <tbody id="timeBody">
+                                            <tr>
+                                                <th scope="row">Scout's Name</th>
+                                                <td id="scoutNameD"></td>
+                                            </tr>
+                                            <tr>
+                                                <th scope="row">Team #</th>
+                                                <td id="teamNumD"></td>
+                                            </tr>
+                                            <tr>
+                                                <th scope="row">Match #</th>
+                                                <td id="matchNumD"></td>
+                                            </tr>
+                                            <tr>
+                                                <th scope="row">Alliance</th>
+                                                <td id="allianceCatD"></td>
+                                            </tr>
+                                            <tr>
+                                                <th scope="row">Setup</th>
+                                                <td id="setupD"></td>
+                                            </tr>
+                                            <tr>
+                                                <th scope="row">Auton</th>
+                                                <td id="autonD"></td>
+                                            </tr>
+                                            <tr>
+                                                <th scope="row">Auton (2 Cube)</th>
+                                                <td id="autonDosD"></td>
+                                            </tr>
+                                            <tr>
+                                                <th scope="row">Auton (2 Cube Loc)</th>
+                                                <td id="autonDosLocD"></td>
+                                            </tr>
+                                            <tr>
+                                                <th scope="row">Climb Type</th>
+                                                <td id="climbD"></td>
+                                            </tr>
+                                            <tr>
+                                                <th scope="row">Climb On</th>
+                                                <td id="climbOnD"></td>
+                                            </tr>
+                                        </tbody>
+                                    </table>
+                                    <br />
+                                    <div id="chartPreferences" class="ct-chart ct-perfect-fourth"></div>
                                 </div>
                             </div>
                         </div>
@@ -232,11 +531,24 @@
         <script src="assets/js/plugins/bootstrap-notify.js"></script>
         <!-- Control Center for Light Bootstrap Dashboard: -->
         <script src="assets/js/light-bootstrap-dashboard.js?v=2.0.1" type="text/javascript"></script>
-    
-        <script src="https://www.gstatic.com/firebasejs/4.8.2/firebase.js"></script>
-        <script data-main="scripts/main" src="scripts/require.js"></script>
-        <script>
-            runFireBase();
+        <script src="assets/js/FileSaver.js" type="text/javascript"></script>
+        <script src="assets/js/tableexport.js" type="text/javascript"></script>
+
+        <script type="text/javascript" charset="utf-8">
+            function onLoad() {
+                document.addEventListener("deviceready", onDeviceReady, false);
+                //var strTemp;
+                //for (var i = 1; i <= 76; i++) {
+                //    strTemp += '<option value="' + i + '">' + i + '</option>';
+                //}
+                fillData();
+            }
+
+            function onDeviceReady() {
+                console.log("HAI");
+                makeTemp();
+            }
+
         </script>
 </body>
 </html>
