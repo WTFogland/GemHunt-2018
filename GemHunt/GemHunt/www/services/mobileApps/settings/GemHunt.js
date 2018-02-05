@@ -420,7 +420,7 @@ function toggle() {
         start.disabled = true;
         stop.disabled = false;
     }
-};
+}
 
 function insertTime(logType) {
     document.getElementById("titleName").innerHTML += '<td>timelog</td>';
