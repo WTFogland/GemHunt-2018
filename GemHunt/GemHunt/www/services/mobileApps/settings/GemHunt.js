@@ -69,14 +69,17 @@ function fillData() {
     document.getElementById("matchNumD").innerHTML = document.getElementById("matchNums").value;
     document.getElementById("allianceCatD").innerHTML = document.getElementById("allianceCat").value;
 
-    if (document.getElementById("leftStart").checked) {
-        document.getElementById("setupD").innerHTML = "left of exchange";
+    if (document.getElementById("firstStart").checked) {
+        document.getElementById("setupD").innerHTML = "1";
     }
-    else if (document.getElementById("centerStart").checked) {
-        document.getElementById("setupD").innerHTML = "center";
+    else if (document.getElementById("secondStart").checked) {
+        document.getElementById("setupD").innerHTML = "2";
     }
-    else if (document.getElementById("rightStart").checked) {
-        document.getElementById("setupD").innerHTML = "right of exchange";
+    else if (document.getElementById("thirdStart").checked) {
+        document.getElementById("setupD").innerHTML = "3";
+    }
+    else if (document.getElementById("fourthStart").checked) {
+        document.getElementById("setupD").innerHTML = "4";
     } else {
         document.getElementById("setupD").innerHTML = "not in play";
     }
@@ -95,54 +98,10 @@ function fillData() {
         moveAuto = "moved";
     }
 
-    if (document.getElementById("switchAuto").checked) {
-        switchAuto = "switch";
-    }
-
-    if (document.getElementById("scaleAuto").checked) {
-        scaleAuto = "scale";
-    }
 
     strAuton = noAuto + " " + moveAuto + " " + switchAuto + " " + scaleAuto;
 
     document.getElementById("autonD").innerHTML = strAuton;
-
-    var strTwoCube;
-    var noTwoCube = '';
-    var pickup = '';
-    var scale = '';
-    var switchtwo = '';
-
-    if (document.getElementById("tcNo").checked) {
-        noTwoCube = 'none';
-    }
-
-    if (document.getElementById("tcSwitch").checked) {
-        switchtwo = 'on switch';
-    }
-
-    if (document.getElementById("tcScale").checked) {
-        scale = 'on scale';
-    }
-
-    if (document.getElementById("tcPickup").checked) {
-        pickup = 'picked up';
-    }
-
-    strTwoCube = noTwoCube + " " + pickup + " " + scale + " " + switchtwo;
-    document.getElementById("autonDosD").innerHTML = strTwoCube;
-
-    if (document.getElementById("tcPC").checked) {
-        document.getElementById("autonDosLocD").innerHTML = "pc zone";
-    }
-
-    if (document.getElementById("tcPlat").checked) {
-        document.getElementById("autonDosLocD").innerHTML = "platform";
-    }
-
-    if (document.getElementById("tcAlli").checked) {
-        document.getElementById("autonDosLocD").innerHTML = "alliance";
-    }
 
     var climbType;
     var rampBot = ' ';
@@ -173,10 +132,6 @@ function fillData() {
         park = 'park on other';
     }
 
-    if (document.getElementById("leviOther").checked) {
-        levitate = 'levitate';
-    }
-
     if (document.getElementById("noClimb").checked) {
         none = 'no climb';
     }
@@ -194,9 +149,8 @@ function fillData() {
     document.getElementById("climbOnD").innerHTML = document.getElementById("otherTeamText").value;
 
 // Pit Stuff
-
+    document.getElementById("pitTeamNum").innerHTML = document.getElementById("pitteams").value;
     document.getElementById("scoutNamePitD").innerHTML = document.getElementById("scoutName").value.toLowerCase();
-    document.getElementById("pitTeamNum").innerHTML = document.getElementById("pitTeamText").value;
 
     if (document.getElementById("westcoast").checked) {
         document.getElementById("driveType").innerHTML = "west coast";
@@ -216,7 +170,7 @@ function fillData() {
 
     if (document.getElementById("othercheck").checked) {
         $("#otherdrive").show();
-        document.getElementById("driveType").innerHTML = $("#other").value();
+        document.getElementById("driveType").innerHTML = document.getElementById("other").value;
     } else {
         $("#otherdrive").hide();
     }
@@ -248,10 +202,6 @@ function fillData() {
     document.getElementById("heightD").innerHTML = document.getElementById("height").value;
     document.getElementById("perimD").innerHTML = document.getElementById("perim").value;
 
-    if (document.getElementById("park").checked) {
-        document.getElementById("climbTypeD").innerHTML = "park";
-    }
-
     if (document.getElementById("regclimb").checked) {
         document.getElementById("climbTypeD").innerHTML = "reg climb";
     }
@@ -270,18 +220,6 @@ function fillData() {
 
     if (document.getElementById("climbothers").checked) {
         document.getElementById("climbTypeD").innerHTML = "others climb on";
-    } 
-
-    if (document.getElementById("leftS").checked) {
-        document.getElementById("startD").innerHTML = "left";
-    }
-
-    if (document.getElementById("rightS").checked) {
-        document.getElementById("startD").innerHTML = "right";
-    }
-
-    if (document.getElementById("centerS").checked) {
-        document.getElementById("startD").innerHTML = "center";
     }
 
     if (document.getElementById("move").checked) {
@@ -312,8 +250,6 @@ function fillData() {
         document.getElementById("placeCubeD").innerHTML = "shoot";
     }
 
-    document.getElementById("driveSeasons").innerHTML = document.getElementById("driveExperience").value;
-    document.getElementById("rotateInfo").innerHTML = document.getElementById("driveRotate").value;
 }
 
 var ExportButtons;
@@ -322,6 +258,18 @@ var instance;
 var XLSbutton;
 
 function saveTable() {
+    var requiredLength = 90;
+    if (document.getElementById('dataTable').rows[0].cells.length < requiredLength) {
+        var neededLength = requiredLength - document.getElementById('dataTable').rows[0].cells.length;
+
+        for (var i = 0; i < neededLength; i++) {
+            document.getElementById("titleName").innerHTML += '<td style="display: none;"></td>';
+            document.getElementById("userInputs").innerHTML += '<td style="display: none;"></td>';
+        }
+
+        console.log("Total Length: " + document.getElementById('dataTable').rows[0].cells.length);
+    }
+
     ExportButtons = document.getElementsByTagName('table');
 
     instance = new TableExport(ExportButtons, {
@@ -437,13 +385,19 @@ function clearFields() {
     });
 
     document.getElementById("otherTeamText").value = " ";
+    console.log("Clearing")
+    var mainCells = 8;
+    var totalRows = document.getElementById('dataTable').rows[0].cells.length;
+    var titleRow = document.getElementById("titleName");
+    var inputRow = document.getElementById("userInputs");
 
-    var mainCells = 10;
-    var totalRows = document.getElementById("dataTable").rows.length;
+    console.log("Total Columns: " + totalRows);
 
-        for (i = totalRows; i >= mainCells; i--) {
-            document.getElementById("dataTable").deleteRow(i - 1);
+    for (var i = totalRows; i > mainCells; i--) {
+        titleRow.deleteCell(i-1);
+        inputRow.deleteCell(i-1);
     }
+
 }
 
 function clearPitFields() {
@@ -490,5 +444,15 @@ function idTeams() {
 
         selmatch.appendChild(newMatch);
     }
+
+    for (var k = 0; k < curTeams.length; k++) {
+        var newTeam = document.createElement("option");
+        var sel = document.getElementById("pitteams");
+        newTeam.value = curTeams[k];
+        newTeam.appendChild(document.createTextNode(curTeams[k]));
+
+        sel.appendChild(newTeam);
+    }
 }
+
 
