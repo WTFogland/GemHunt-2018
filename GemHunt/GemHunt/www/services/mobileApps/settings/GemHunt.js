@@ -65,6 +65,7 @@
 
 function fillData() {
     document.getElementById("scoutNameD").innerHTML = document.getElementById("scoutName").value.toLowerCase();
+    document.getElementById("weekNum").innerHTML = document.getElementById("week").value.toLowerCase();
     document.getElementById("teamNumD").innerHTML = document.getElementById("teams").value;
     document.getElementById("matchNumD").innerHTML = document.getElementById("matchNums").value;
     document.getElementById("allianceCatD").innerHTML = document.getElementById("allianceCat").value;
@@ -404,7 +405,7 @@ function clearFields() {
 
     document.getElementById("otherTeamText").value = " ";
     console.log("Clearing")
-    var mainCells = 8;
+    var mainCells = 9;
     var totalRows = document.getElementById('dataTable').rows[0].cells.length;
     var titleRow = document.getElementById("titleName");
     var inputRow = document.getElementById("userInputs");
