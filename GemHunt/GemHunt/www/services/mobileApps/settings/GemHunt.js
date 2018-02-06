@@ -222,17 +222,35 @@ function fillData() {
         document.getElementById("climbTypeD").innerHTML = "others climb on";
     }
 
+    var movea = '';
+    var smart = '';
+    var dumb = '';
+    var scale = '';
+    var nothing = '';
+    var pitAuto = '';
+
     if (document.getElementById("move").checked) {
-        document.getElementById("autonTypeD").innerHTML = "move";
+        movea = "move";
     }
 
-    if (document.getElementById("switch").checked) {
-        document.getElementById("autonTypeD").innerHTML = "switch";
+    if (document.getElementById("smartswitch").checked) {
+        smart = "smart switch";
+    }
+
+    if (document.getElementById("dumbswitch").checked) {
+        dumb = "dumb switch";
     }
 
     if (document.getElementById("scale").checked) {
-        document.getElementById("autonTypeD").innerHTML = "scale";
+        scale = "scale";
     }
+
+    if (document.getElementById("nothing").checked) {
+       nothing = 'no auton';
+    }
+
+    pitAuto = movea + " " + smart + " " + dumb + " " + scale + " " + nothing;
+    document.getElementById("autonTypeD").innerHTML = pitAuto;
 
     if (document.getElementById("yesScale").checked) {
         document.getElementById("onScaleD").innerHTML = "yes";
