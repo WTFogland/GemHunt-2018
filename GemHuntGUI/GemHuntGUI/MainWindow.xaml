@@ -1,0 +1,18 @@
+﻿<Window x:Class="GemHuntGUI.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:GemHuntGUI"
+        mc:Ignorable="d"
+        Title="GemHunt Data Complier" Height="350" Width="525">
+    <Grid>
+        <Button Content="Merge Scouting Data" HorizontalAlignment="Left" Height="54" Margin="180,145,0,0" VerticalAlignment="Top" Width="156" Click="Button_Click"/>
+        <TextBox HorizontalAlignment="Left" Height="22" Margin="85,19,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="267" TextChanged="TextBox_TextChanged"/>
+        <TextBox HorizontalAlignment="Left" Height="22" Margin="145,46,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="155" TextChanged="TextBox2_TextChanged"/>
+        <Label Content= "Folder Loc" HorizontalAlignment="Left" Height="27" Margin="10,14,0,0" VerticalAlignment="Top" Width="70"/>
+        <Label Content="Compiled File's Name" HorizontalAlignment="Left" Height="26" Margin="10,42,0,0" VerticalAlignment="Top" Width="130"/>
+        <Image Source="logo-final-gems.png" HorizontalAlignment="Left" Height="135" Margin="10,176,0,0" VerticalAlignment="Top" Width="156"/>
+
+    </Grid>
+</Window>
