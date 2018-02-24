@@ -374,7 +374,13 @@ function count() {
         clearInterval(counter);
     } else {
         time++;
-        sec.innerHTML = time % 60;
+        
+        if (time % 60 <= 9) {
+            sec.innerHTML = '0' + time % 60;
+        }
+        else {
+            sec.innerHTML = time % 60;
+        }
         min.innerHTML = Math.floor(time / 60);
     }
 }
@@ -392,7 +398,7 @@ function toggle() {
 function insertTime(logType) {
     document.getElementById("titleName").innerHTML += '<td>timelog</td>';
     document.getElementById("userInputs").innerHTML += '<td>' +
-        logType.toLowerCase() + ' ' +
+        logType.toLowerCase() + ' | ' +
         document.getElementById("min").innerHTML +
         ":" +
         document.getElementById("sec").innerHTML + '</td>';
