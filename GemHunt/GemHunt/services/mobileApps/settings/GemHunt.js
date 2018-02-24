@@ -398,7 +398,7 @@ function toggle() {
 function insertTime(logType) {
     document.getElementById("titleName").innerHTML += '<td>timelog</td>';
     document.getElementById("userInputs").innerHTML += '<td>' +
-        logType.toLowerCase() + ' | ' +
+        logType.toLowerCase() + ' ' +
         document.getElementById("min").innerHTML +
         ":" +
         document.getElementById("sec").innerHTML + '</td>';
