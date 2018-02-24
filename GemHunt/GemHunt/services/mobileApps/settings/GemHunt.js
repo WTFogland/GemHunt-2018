@@ -368,13 +368,13 @@ reset.addEventListener("click", function () {
 
 function count() {
     if (time === 150) {
-        sec.innerHTML = 0;
-        min.innerHTML = 0;
+        sec.innerHTML = '0';
+        min.innerHTML = '00';
         toggle();
         clearInterval(counter);
     } else {
         time++;
-        
+
         if (time % 60 <= 9) {
             sec.innerHTML = '0' + time % 60;
         }
