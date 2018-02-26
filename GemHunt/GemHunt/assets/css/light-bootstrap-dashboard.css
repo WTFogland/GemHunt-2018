@@ -5334,4 +5334,6 @@ License - nucleoapp.com/license/
 #teamClimbed {
     display: none;
 }
+
+#paint {border: 1px solid black; background : #ffffff; width: 820px; height: 700px;}
 /* all icon font classes list here */
