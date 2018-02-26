@@ -362,7 +362,7 @@ stop.addEventListener("click", function () {
 
 reset.addEventListener("click", function () {
     time = 0;
-    sec.innerHTML = time % 60;
+    sec.innerHTML = '0' + time % 60;
     min.innerHTML = Math.floor(time / 60);
 });
 
