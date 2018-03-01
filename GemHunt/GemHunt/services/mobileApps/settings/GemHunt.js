@@ -85,11 +85,11 @@ function fillData() {
         document.getElementById("setupD").innerHTML = "not in play";
     }
 
-    var strAuton;
-    var noAuto = '';
-    var moveAuto = '';
-    var switchAuto = '';
-    var scaleAuto = '';
+    var strAuton = '',
+        noAuto = '',
+        moveAuto = '',
+        switchAuto = '',
+        scaleAuto = '';
 
     if (document.getElementById("noAuto").checked) {
         noAuto = "no auton";
@@ -99,19 +99,18 @@ function fillData() {
         moveAuto = "moved";
     }
 
-
     strAuton = noAuto + " " + moveAuto + " " + switchAuto + " " + scaleAuto;
 
     document.getElementById("autonD").innerHTML = strAuton;
 
-    var climbType;
-    var rampBot = ' ';
-    var climber = ' ';
-    var climbon = ' ';
-    var rampon = ' ';
-    var park = ' ';
-    var levitate = ' ';
-    var none = ' ';
+    var climbType = '',
+        rampBot = '',
+        climber = '',
+        climbon = '',
+        rampon = '',
+        park = '',
+        levitate = '',
+        none = '';
 
     if (document.getElementById("rampClimb").checked) {
         rampBot = 'ramp bot';
@@ -223,12 +222,12 @@ function fillData() {
         document.getElementById("climbTypeD").innerHTML = "others climb on";
     }
 
-    var movea = '';
-    var smart = '';
-    var dumb = '';
-    var scale = '';
-    var nothing = '';
-    var pitAuto = '';
+    var movea = '',
+        smart = '',
+        dumb = '',
+        scale = '',
+        nothing = '',
+        pitAuto = '';
 
     if (document.getElementById("move").checked) {
         movea = "move";
@@ -268,7 +267,6 @@ function fillData() {
     if (document.getElementById("shootCube").checked) {
         document.getElementById("placeCubeD").innerHTML = "shoot";
     }
-
 }
 
 var ExportButtons;
@@ -395,13 +393,60 @@ function toggle() {
     }
 }
 
+var startTime,
+    stopTime,
+    startPoint,
+    stopPoint,
+    logPoint = 0;
+
 function insertTime(logType) {
-    document.getElementById("titleName").innerHTML += '<td>timelog</td>';
-    document.getElementById("userInputs").innerHTML += '<td>' +
-        logType.toLowerCase() + ' ' +
-        document.getElementById("min").innerHTML +
-        ":" +
-        document.getElementById("sec").innerHTML + '</td>';
+    logPoint += 1;
+    console.log(logPoint);
+
+    if (logPoint == 1) {
+        startTime = time;
+        startPoint = logType.toLowerCase();
+        console.log("starttime: " + startTime + " startpoint: " + startPoint);
+        $.notify("Started Cycle", "success");
+        return;
+    }
+
+    if (logPoint == 2) {
+        stopTime = time;
+        stopPoint = logType.toLowerCase();
+        console.log("stoptime: " + stopTime + " stoppoint: " + stopPoint);
+        logPoint = 0;
+
+        var totTime = stopTime - startTime;
+        var timeSec, timeMin;
+
+        if (time % 60 <= 9) {
+            timeSec = '0' + totTime % 60;
+        }
+        else {
+            timeSec = totTime % 60;
+        }
+
+        timeMin = Math.floor(totTime / 60);
+
+        document.getElementById("titleName").innerHTML += '<td>' +  startPoint + '_' + stopPoint + '</td>';
+        document.getElementById("userInputs").innerHTML += '<td>' +
+            timeMin +
+            ":" +
+            timeSec + '</td>';
+
+        $.notify("Added Log/Ended Cycle", "success");
+    }
+}
+
+function resetLog() {
+    if (logPoint == 1) {
+        startTime = 0;
+        startPoint = '';
+        logPoint = 0;
+
+        $.notify("Removed Last Start Point", "warn");
+    }
 }
 
 function clearFields() {
@@ -423,6 +468,10 @@ function clearFields() {
         inputRow.deleteCell(i-1);
     }
 
+    logPoint = 1;
+
+    resetLog();
+    fillData();
 }
 
 function clearPitFields() {
@@ -430,14 +479,13 @@ function clearPitFields() {
         this.checked = false;
     });
 
-    document.getElementById("pitTeamText").value = " ";
     document.getElementById("weight").value = " ";
     document.getElementById("height").value = " ";
     document.getElementById("perim").value = " ";
-    document.getElementById("driveExperience").value = " ";
-    document.getElementById("driveRotate").value = " ";
     document.getElementById("other").value = " ";
     document.getElementById("otherlang").value = " ";
+
+    fillData();
 }
 
 function idTeams() {
