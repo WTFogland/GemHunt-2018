@@ -82,7 +82,7 @@ function fillData() {
         document.getElementById("setupD").innerHTML = "4";
     } else {
         document.getElementById("setupD").innerHTML = "not in play";
-    }
+    } 
 
     var strAuton = '',
         noAuto = '',
@@ -207,7 +207,8 @@ function fillData() {
     document.getElementById("weightD").innerHTML = document.getElementById("weight").value;
     document.getElementById("heightD").innerHTML = document.getElementById("height").value;
     document.getElementById("perimD").innerHTML = document.getElementById("perim").value;
-
+	document.getElementById("commD").innerHTML = document.getElementById("impressions").value;
+	
     if (document.getElementById("regclimb").checked) {
         document.getElementById("climbTypeD").innerHTML = "reg climb";
     }
@@ -451,6 +452,10 @@ function toggle() {
     }
 }
 
+var switchcount = 0,
+	scalecount = 0,
+	vaultcount = 0;
+
 var startTime,
     stopTime,
     startPoint,
@@ -465,24 +470,28 @@ avgData['portal 1_switch 3'] = new Array();
 avgData['portal 1_switch 4'] = new Array();
 avgData['portal 1_scale 1'] = new Array();
 avgData['portal 1_scale 2'] = new Array();
+avgData['portal 1_exchange zone'] = new Array();
 avgData['portal 2_switch 1'] = new Array();
 avgData['portal 2_switch 2'] = new Array();
 avgData['portal 2_switch 3'] = new Array();
 avgData['portal 2_switch 4'] = new Array();
 avgData['portal 2_scale 1'] = new Array();
 avgData['portal 2_scale 2'] = new Array();
+avgData['portal 2_exchange zone'] = new Array();
 avgData['portal 3_switch 1'] = new Array();
 avgData['portal 3_switch 2'] = new Array();
 avgData['portal 3_switch 3'] = new Array();
 avgData['portal 3_switch 4'] = new Array();
 avgData['portal 3_scale 1'] = new Array();
 avgData['portal 3_scale 2'] = new Array();
+avgData['portal 3_exchange zone'] = new Array();
 avgData['portal 4_switch 1'] = new Array();
 avgData['portal 4_switch 2'] = new Array();
 avgData['portal 4_switch 3'] = new Array();
 avgData['portal 4_switch 4'] = new Array();
 avgData['portal 4_scale 1'] = new Array();
 avgData['portal 4_scale 2'] = new Array();
+avgData['portal 4_exchange zone'] = new Array();
 avgData['exchange zone_switch 1'] = new Array();
 avgData['exchange zone_switch 2'] = new Array();
 avgData['exchange zone_switch 3'] = new Array();
@@ -495,30 +504,35 @@ avgData['cube zone 1_switch 1'] = new Array();
 avgData['cube zone 1_switch 2'] = new Array();
 avgData['cube zone 1_switch 3'] = new Array();
 avgData['cube zone 1_switch 4'] = new Array();
+avgData['cube zone 1_exchange zone'] = new Array();
 avgData['cube zone 2_scale 1'] = new Array();
 avgData['cube zone 2_scale 2'] = new Array();
 avgData['cube zone 2_switch 1'] = new Array();
 avgData['cube zone 2_switch 2'] = new Array();
 avgData['cube zone 2_switch 3'] = new Array();
 avgData['cube zone 2_switch 4'] = new Array();
+avgData['cube zone 2_exchange zone'] = new Array();
 avgData['competitive cubes 1_switch 1'] = new Array();
 avgData['competitive cubes 1_switch 2'] = new Array();
 avgData['competitive cubes 1_switch 3'] = new Array();
 avgData['competitive cubes 1_switch 4'] = new Array();
 avgData['competitive cubes 1_scale 1'] = new Array();
 avgData['competitive cubes 1_scale 2'] = new Array();
+avgData['competitive cubes 1_exchange zone'] = new Array();
 avgData['competitive cubes 2_switch 1'] = new Array();
 avgData['competitive cubes 2_switch 2'] = new Array();
 avgData['competitive cubes 2_switch 3'] = new Array();
 avgData['competitive cubes 2_switch 4'] = new Array();
 avgData['competitive cubes 2_scale 1'] = new Array();
 avgData['competitive cubes 2_scale 2'] = new Array();
+avgData['competitive cubes 2_exchange zone'] = new Array();
 avgData['preloaded_switch 1'] = new Array();
 avgData['preloaded_switch 2'] = new Array();
 avgData['preloaded_switch 3'] = new Array();
 avgData['preloaded_switch 4'] = new Array();
 avgData['preloaded_scale 1'] = new Array();
 avgData['preloaded_scale 2'] = new Array();
+avgData['preloaded_exchange zone'] = new Array();
 avgData['disabled_disabled'] = new Array();
 avgData['cube dropped_switch 1'] = new Array();
 avgData['cube dropped_switch 2'] = new Array();
@@ -526,6 +540,13 @@ avgData['cube dropped_switch 3'] = new Array();
 avgData['cube dropped_switch 4'] = new Array();
 avgData['cube dropped_scale 1'] = new Array();
 avgData['cube dropped_scale 2'] = new Array();
+avgData['cube dropped_exchange zone'] = new Array();
+avgData['floor cube_switch 1'] = new Array();
+avgData['floor cube_switch 2'] = new Array();
+avgData['floor cube_switch 3'] = new Array();
+avgData['floor cube_switch 4'] = new Array();
+avgData['floor cube_scale 1'] = new Array();
+avgData['floor cube_scale 2'] = new Array();
 avgData['feelsbadman_feelsbadman'] = new Array();
 
 function insertTime(logType) {
@@ -558,8 +579,22 @@ function insertTime(logType) {
 
         timeMin = Math.floor(totTime / 60);
 
-        console.log("totTime: " + totTime);
         avgData[totCycle].push(parseInt(totTime));
+		
+		if (stopPoint.includes("switch")) {
+			console.log("switchcount increased");
+			switchcount += 1;
+		} else if (stopPoint.includes("scale")) {
+			console.log("scalecount increased");
+			scalecount += 1;
+		} else if (stopPoint.includes("exchange zone")) {
+			console.log("vault increased");
+			vaultcount += 1;
+		}
+		
+		document.getElementById("switchD").innerHTML = switchcount;
+		document.getElementById("scaleD").innerHTML = scalecount;
+		document.getElementById("vaultD").innerHTML = vaultcount;
 
         document.getElementById("timeName").innerHTML += '<td>' +  startPoint + '_' + stopPoint + '</td>';
         document.getElementById("timeCounts").innerHTML += '<td>' +
@@ -589,7 +624,7 @@ function clearFields() {
     document.getElementById("otherTeamText").value = " ";
     document.getElementById("commentBox").value = " ";
     console.log("Clearing")
-    var mainCells = 10;
+    var mainCells = 13;
     var totalRows = document.getElementById('dataTable').rows[0].cells.length;
     var titleRow = document.getElementById("titleName");
     var inputRow = document.getElementById("userInputs");
@@ -600,11 +635,28 @@ function clearFields() {
         titleRow.deleteCell(i-1);
         inputRow.deleteCell(i-1);
     }
+	
+	var totalLogRows = document.getElementById('timeLogs').rows[0].cells.length;
+	var titleLogRow = document.getElementById("timeName");
+	var inputLogRow = document.getElementById("timeCounts");
+	
+	for (var i = totalLogRows; i > 0; i--) {
+		titleLogRow.deleteCell(i-1);
+		inputLogRow.deleteCell(i-1);
+	}
 
     logPoint = 1;
-
+	switchcount = 0;
+	scalecount = 0;
+	vaultcount = 0;
+	
+	document.getElementById("switchD").innerHTML = switchcount;
+	document.getElementById("scaleD").innerHTML = scalecount;
+	document.getElementById("vaultD").innerHTML = vaultcount;
+	
     resetLog();
     fillData();
+
 }
 
 function clearPitFields() {
@@ -623,14 +675,12 @@ function clearPitFields() {
 
 function idTeams() {
     var curTeams = [
-        "48", "63", "128", "144", "234", "247", "279", "291", "302", "337", "379", "451",
-        "554", "677", "868", "1014", "1038", "1317", "1466", "1559", "1675", "2172", "2252", "2399", "2603", "3010",
-        "3138", "3193", "3201", "3260", "3266", "3324", "3397", "3484", "3492", "3504", "3777", "3844",
-        "3940", "4028", "4085", "4121", "4145", "4283", "4284", "4362", "4467", "4521", "4611", "5413",
-        "5492", "5667", "5740", "5811", "6032", "6084", "6460", "6765", "6834", "6927", "6936", "7165"
+		"27", "33", "51", "67", "201", "308", "503", "548", "1701", "2145", "2612", "2960", "3536", "3568", "3668",
+		"3707", "4362", "4776", "4994", "5215", "5460", "5524", "5561", "5641", "5685", "6078", "6117", "6190", "6559",
+		"6583", "7178", "7191", "7192", "7195", "7196", "7220", "7223", "7225", "7232", "7254"
     ];
 
-    var matchTotal = 100;
+    var matchTotal = 80;
 
     for (var i = 0; i < curTeams.length; i++) {
         var newTeam = document.createElement("option");

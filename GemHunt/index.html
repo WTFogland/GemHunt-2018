@@ -155,7 +155,11 @@
 
                                     <label for="perim">Frame Perimeter</label>
                                     <input type="text" class="form-control" id="perim" onchange="fillData();"/>
+									
                                 </div>
+								
+									<label for="impressions">Impressions/Comments</label>
+									<input type="text" class="form-control" id="impressions" onchange="fillData();" style="width: 450px;"/>
                                 <br/>
                                 <span style="font-size: 14pt;">Climb Type</span>
                                 <br/>
@@ -573,6 +577,9 @@
                                     <td>auton</td>
                                     <td>climb type</td>
                                     <td>climb on</td>
+									<td>switch count</td>
+									<td>scale count</td>
+									<td>vault count</td>
                                     <td>comments</td>
                                 </tr>
                                 <tr id="userInputs">
@@ -585,6 +592,9 @@
                                     <td id="autonD"></td>
                                     <td id="climbD"></td>
                                     <td id="climbOnD"></td>
+									<td id="switchD"></td>
+									<td id="scaleD"></td>
+									<td id="vaultD"></td>
                                     <td id="commentD"></td>
                                 </tr>
                                 </tbody>
@@ -604,6 +614,7 @@
                                     <td>autons</td>
                                     <td>place on scale</td>
                                     <td>place cubes</td>
+									<td>comments</td>
                                 </tr>
                                 <tr id="userInputsPit">
                                     <td id="scoutNamePitD"></td>
@@ -617,6 +628,7 @@
                                     <td id="autonTypeD"></td>
                                     <td id="onScaleD"></td>
                                     <td id="placeCubeD"></td>
+									<td id="commD"></td>
                                 </tr>
                                 </tbody>
                             </table>
