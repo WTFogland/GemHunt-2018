@@ -1,6 +1,0 @@
-{
-  "name": "GemHunt",
-  "dependencies": {
-    "json-2-csv": "2.0.0"
-  }
-}

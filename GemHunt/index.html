@@ -1,0 +1,697 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta http-equiv="content-type" content="text/html; charset=UTF-8"/>
+    <meta name="format-detection" content="telephone=no">
+    <meta name="msapplication-tap-highlight" content="no">
+    <meta name="viewport"
+          content="user-scalable=no, initial-scale=1, maximum-scale=1, minimum-scale=1, width=device-width">
+    <title>GemHunt</title>
+    <!--     Fonts and icons     -->
+    <link href="https://fonts.googleapis.com/css?family=Montserrat:400,700,200" rel="stylesheet"/>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/latest/css/font-awesome.min.css"/>
+    <!-- CSS Files -->
+    <link href="assets/css/bootstrap.min.css" rel="stylesheet"/>
+    <link href="assets/css/light-bootstrap-dashboard.css?v=2.0.1" rel="stylesheet"/>
+    <link href="assets/css/drawingboard.css" rel="stylesheet"/>
+</head>
+<body onload="onLoad()">
+<div class="wrapper">
+    <div class="sidebar" data-image="assets/img/sidebar.png" data-color="red">
+        <div class="sidebar-wrapper">
+            <div class="logo">
+                <center><img src="assets/img/gemgear.png" width="45%" height="45%"/>
+                    <br/>
+                    <div style="font-size: 20pt">GemHunt</div>
+                </center>
+
+            </div>
+            <ul class="nav">
+                <li id="homeNav" class="nav-item active" onclick="mainNav('home')">
+                    <a class="nav-link">
+                        <i class="nc-icon nc-grid-45"></i>
+                        <p>Home</p>
+                    </a>
+                </li>
+                <li id="settingsNav" onclick="mainNav('settings')">
+                    <a class="nav-link">
+                        <i class="nc-icon nc-circle-09"></i>
+                        <p>Settings</p>
+                    </a>
+                </li>
+                <li id="pitNav">
+                    <a class="nav-link" onclick="mainNav('pitscout')">
+                        <i class="nc-icon nc-notes"></i>
+                        <p>Pit Scouting</p>
+                    </a>
+                </li>
+                <li id="matchNav">
+                    <a class="nav-link" onclick="mainNav('matchscout')">
+                        <i class="nc-icon nc-paper-2"></i>
+                        <p>Match Scouting</p>
+                    </a>
+                </li>
+                <li id="debugNav">
+                    <a class="nav-link" onclick="mainNav('debug')">
+                        <i class="nc-icon nc-badge"></i>
+                        <p>Debug</p>
+                    </a>
+                </li>
+            </ul>
+        </div>
+    </div>
+    <div class="main-panel">
+        <!-- Navbar -->
+        <nav class="navbar navbar-expand-lg " color-on-scroll="500">
+            <div class=" container-fluid  ">
+                <a class="navbar-brand" id="navBar"> Home </a>
+                <button href="" class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse"
+                        aria-controls="navigation-index" aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-bar burger-lines"></span>
+                    <span class="navbar-toggler-bar burger-lines"></span>
+                    <span class="navbar-toggler-bar burger-lines"></span>
+                </button>
+            </div>
+        </nav>
+        <!-- End Navbar -->
+        <div class="content" id="home">
+            <center>
+            <div id="paint"></div>
+            </center>
+        </div>
+        <div class="content" id="settings" style="display: none;">
+            <div class="container-fluid">
+                <div class="row">
+                    <div class="col-md-4">
+                        <div class="card ">
+                            <div class="card-header ">
+                                <h4 class="card-title">Profile</h4>
+                                <p class="card-category">Changes your name that is displayed on the data-sheet</p>
+                            </div>
+                            <div class="card-body ">
+                                <input type="text" class="form-control" id="scoutName" placeholder="Name"
+                                       onchange="fillData();">
+                                <br/>
+                                <input type="text" class="form-control" id="week" placeholder="Week #"
+                                       onchange="fillData();">
+
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="content" id="pitscout" style="display: none;">
+            <div class="container-fluid">
+                <div class="row">
+                    <div class="col-lg">
+                        <div class="card ">
+                            <div class="card-header ">
+                                <h4 class="card-title"></h4>
+                                <p class="card-category"></p>
+                            </div>
+                            <div class="card-body ">
+                                <h4>Team #</h4>
+                                <select id="pitteams" class="form-control" style="width: 120px;"
+                                        onclick="fillData();"></select>
+
+                                <h4>Drive Train</h4>
+                                <input id="westcoast" type="checkbox" class="form-check-inline"
+                                       style="transform: scale(1.3);" onclick="fillData();"/> West Coast
+                                <input id="mecanum" type="checkbox" class="form-check-inline"
+                                       style="transform: scale(1.3);" onclick="fillData();"/> Mecanum
+                                <input id="tank" type="checkbox" class="form-check-inline"
+                                       style="transform: scale(1.3);" onclick="fillData();"/> Tank
+                                <input id="swerve" type="checkbox" class="form-check-inline"
+                                       style="transform: scale(1.3);" onclick="fillData();"/> Swerve
+                                <input id="othercheck" type="checkbox" class="form-check-inline"
+                                       style="transform: scale(1.3);" onclick="fillData();"/> Other
+                                <div id="otherdrive" style="width: 350px; display: none;">
+                                    <input type="text" class="form-control" id="other" onchange="fillData();"/>
+                                </div>
+
+                                <h4>Programming Language</h4>
+                                <input id="java" type="checkbox" class="form-check-inline"
+                                       style="transform: scale(1.3);" onclick="fillData();"/> Java
+                                <input id="cpp" type="checkbox" class="form-check-inline" style="transform: scale(1.3);"
+                                       onclick="fillData();"/> C++
+                                <input id="python" type="checkbox" class="form-check-inline"
+                                       style="transform: scale(1.3);" onclick="fillData();"/> Python
+                                <input id="labview" type="checkbox" class="form-check-inline"
+                                       style="transform: scale(1.3);" onclick="fillData();"/> LabView
+                                <input id="otherchecklang" type="checkbox" class="form-check-inline"
+                                       style="transform: scale(1.3);" onclick="fillData();"/> Other
+                                <div id="otherlangdiv" style="width: 350px; display: none;">
+                                    <input type="text" class="form-control" id="otherlang" onchange="fillData();"/>
+                                </div>
+
+                                <h4>Robot Specs</h4>
+                                <div style="width: 200px;">
+                                    <label for="weight">Weight</label>
+                                    <input type="text" class="form-control" id="weight" onchange="fillData();"/>
+
+                                    <label for="height">Height</label>
+                                    <input type="text" class="form-control" id="height" onchange="fillData();"/>
+
+                                    <label for="perim">Frame Perimeter</label>
+                                    <input type="text" class="form-control" id="perim" onchange="fillData();"/>
+                                </div>
+                                <br/>
+                                <span style="font-size: 14pt;">Climb Type</span>
+                                <br/>
+                                <input id="park" type="checkbox" class="form-check-inline"
+                                       style="transform: scale(1.3);" onclick="fillData();"/> Park
+                                <input id="regclimb" type="checkbox" class="form-check-inline"
+                                       style="transform: scale(1.3);" onclick="fillData();"/> Reg. Climb
+                                <input id="curtiousclimb" type="checkbox" class="form-check-inline"
+                                       style="transform: scale(1.3);" onclick="fillData();"/> Courteous Climb
+                                <input id="carryothers" type="checkbox" class="form-check-inline"
+                                       style="transform: scale(1.3);" onclick="fillData();"/> Carry Others
+                                <input id="rampbot" type="checkbox" class="form-check-inline"
+                                       style="transform: scale(1.3);" onclick="fillData();"/> Ramp Others
+                                <input id="climbothers" type="checkbox" class="form-check-inline"
+                                       style="transform: scale(1.3);" onclick="fillData();"/> Climb on me
+                                <br/><br/>
+                                <span style="font-size: 14pt">Autons</span>
+                                <br/>
+                                <input id="move" type="checkbox" class="form-check-inline"
+                                       style="transform: scale(1.3);" onclick="fillData();"/> Move
+                                <input id="dumbswitch" type="checkbox" class="form-check-inline"
+                                       style="transform: scale(1.3);" onclick="fillData();"/> Dumb Switch
+                                <input id="smartswitch" type="checkbox" class="form-check-inline"
+                                       style="transform: scale(1.3);" onclick="fillData();"/> Smart Switch
+                                <input id="scale" type="checkbox" class="form-check-inline"
+                                       style="transform: scale(1.3);" onclick="fillData();"/> Scale
+                                <input id="nothing" type="checkbox" class="form-check-inline"
+                                       style="transform: scale(1.3);" onclick="fillData();"/> Nothing
+                                <br/><br/>
+                                <span style="font-size: 14pt">Scale Capable</span>
+                                <br/>
+                                <input id="yesScale" type="checkbox" class="form-check-inline"
+                                       style="transform: scale(1.3);" onclick="fillData();"/> Yes
+                                <input id="noScale" type="checkbox" class="form-check-inline"
+                                       style="transform: scale(1.3);" onclick="fillData();"/> No
+                                <br/><br/>
+                                <span style="font-size: 14pt">Place Cubes</span>
+                                <br/>
+                                <input id="liftCube" type="checkbox" class="form-check-inline"
+                                       style="transform: scale(1.3);" onclick="fillData();"/> Lift
+                                <input id="shootCube" type="checkbox" class="form-check-inline"
+                                       style="transform: scale(1.3);" onclick="fillData();"/> Shoot
+                                <br/><br/>
+
+                                <button type="button" id="exportPit" class="btn btn-success btn-lg btn-block"
+                                        onclick="savePitData();">Export
+                                </button>
+                                <button type="button" id="restartPitFields" class="btn btn-dark btn-lg btn-block"
+                                        onclick="clearPitFields();">New/Reset Fields
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="content" id="matchscout" style="display: none;">
+            <div class="container-fluid">
+                <div class="row">
+                    <div class="col-lg">
+                        <div class="card ">
+                            <div class="card-header ">
+                            </div>
+                            <div class="card-body ">
+                                <div class="row">
+                                    <div class="col-lg">
+                                        <form>
+                                            <div class="row">
+                                                <div class="col">
+                                                    <div class="form-row">
+                                                        <div class="col">
+                                                            <h4>Team #</h4>
+                                                            <select id="teams" class="form-control"
+                                                                    style="width: 120px;"
+                                                                    onclick="fillData();"></select>
+                                                        </div>
+                                                        <div class="col">
+                                                            <h4>Match #</h4>
+                                                            <select class="form-control" id="matchNums"
+                                                                    style="width: 100px;"
+                                                                    onchange="fillData();"></select>
+                                                        </div>
+                                                        <div class="col">
+                                                            <h4>Alliance</h4>
+                                                            <div style="width: 100px;">
+                                                                <select class="form-control" id="allianceCat"
+                                                                        onchange="fillData();">
+                                                                    <option value="blue">Blue</option>
+                                                                    <option value="red">Red</option>
+                                                                </select>
+                                                                <br/>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+
+                                                    <h4>Setup</h4>
+                                                    <input id="firstStart" type="checkbox" class="form-check-inline"
+                                                           style="transform: scale(1.3);" onclick="fillData();"/> 1
+                                                    <input id="secondStart" type="checkbox" class="form-check-inline"
+                                                           style="transform: scale(1.3);" onclick="fillData();"/> 2
+                                                    <input id="thirdStart" type="checkbox" class="form-check-inline"
+                                                           style="transform: scale(1.3);" onclick="fillData();"/> 3
+                                                    <input id="fourthStart" type="checkbox" class="form-check-inline"
+                                                           style="transform: scale(1.3);" onclick="fillData();"/> 4
+                                                    <br/>
+                                                    <br/>
+                                                    <h4>Autonomous</h4>
+                                                    <input id="noAuto" type="checkbox" class="form-check-inline"
+                                                           style="transform: scale(1.3);" onclick="fillData();"/> None
+                                                    <input id="moveAuto" type="checkbox" class="form-check-inline"
+                                                           style="transform: scale(1.3);" onclick="fillData();"/> Move
+                                                    <input id="preloadAuto" type="checkbox" class="form-check-inline" 
+                                                           style="transform: scale(1.3);" onclick="fillData(); insertTime('preloaded');"/> Pre-Loaded Cube
+                                                    <br/>
+                                                </div>
+                                            </div>
+                                        </form>
+                                        <br />
+                                        <button type="button" onclick="insertTime('Floor Cube');"
+                                                class="btn btn-danger">Floor Cube
+                                        </button>
+                                        <br />
+                                        <?xml version="1.0" encoding="utf-8"?>
+                                        <!-- Generator: Adobe Illustrator 22.0.1, SVG Export Plug-In . SVG Version: 6.00 Build 0)  -->
+                                        <svg version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
+                                                 viewBox="0 0 1232.7 651" style="enable-background:new 0 0 1232.7 651;" xml:space="preserve">
+                                            <style type="text/css">
+                                                .st0 {
+                                                    fill: none;
+                                                }
+
+                                                .st1 {
+                                                    fill: #00D238;
+                                                }
+
+                                                .stl1off {
+                                                    fill: #FFFFFF;
+                                                }
+
+                                                .st2 {
+                                                    fill: #808080;
+                                                }
+
+                                                .st3 {
+                                                    fill: none;
+                                                    stroke: #000000;
+                                                    stroke-width: 4;
+                                                    stroke-miterlimit: 10;
+                                                }
+
+                                                .st4 {
+                                                    fill: none;
+                                                    stroke: #000000;
+                                                    stroke-width: 2;
+                                                    stroke-miterlimit: 10;
+                                                }
+
+                                                .st5 {
+                                                    fill: none;
+                                                    stroke: #E6E6E6;
+                                                    stroke-width: 7;
+                                                    stroke-miterlimit: 10;
+                                                }
+
+                                                .st6 {
+                                                    fill: #333333;
+                                                    stroke: #000000;
+                                                    stroke-width: 3;
+                                                    stroke-miterlimit: 10;
+                                                }
+
+                                                .st7 {
+                                                    fill: #E2E2E2;
+                                                }
+
+                                                .st8 {
+                                                    fill: #DDC700;
+                                                    stroke: #000000;
+                                                    stroke-miterlimit: 10;
+                                                }
+
+                                                .st9 {
+                                                    fill: #FFFFFF;
+                                                    stroke: #FFFFFF;
+                                                    stroke-width: 5;
+                                                    stroke-miterlimit: 10;
+                                                }
+
+                                                .st10 {
+                                                    fill: #FFFFFF;
+                                                    stroke: #FFFFFF;
+                                                    stroke-width: 4;
+                                                    stroke-miterlimit: 10;
+                                                }
+
+                                                .st11 {
+                                                    fill: none;
+                                                    stroke: #E6E6E6;
+                                                    stroke-width: 4;
+                                                    stroke-miterlimit: 10;
+                                                }
+                                                .st12{fill:#999999;}
+                                                .st13{font-family:'Gravedigger';}
+                                                .st14{font-size:38px;}
+                                            </style>
+                                            <symbol  id="Arrow_26" viewBox="-22.9 -13.1 45.7 26.3">
+                                                <rect x="-22.9" y="-13.1" class="st0" width="45.7" height="26.3"/>
+                                                <g>
+                                                    <polygon points="-22.9,-6.3 0.1,-6.3 0.1,-13.1 22.9,0 0.1,13.1 0.1,6.3 -22.9,6.3 		"/>
+                                                </g>
+                                            </symbol>
+                                            <rect x="52.7" y="52.9" class="st2" width="1130" height="551"/>
+                                            <line class="st3" x1="951.2" y1="50.9" x2="951.2" y2="601.9"/>
+                                            <line class="st3" x1="277.2" y1="50.9" x2="277.2" y2="601.9"/>
+                                            <line class="st4" x1="617.2" y1="51.4" x2="617.2" y2="602.4"/>
+                                            <rect x="48.7" y="50.9" class="st5" width="1136" height="551"/>
+                                            <rect x="549.7" y="155.7" class="st6" width="135.8" height="85"/>
+                                            <rect x="550.6" y="404.5" class="st6" width="135.8" height="85"/>
+                                            <rect x="608.9" y="241.1" class="st7" width="18.4" height="162.9"/>
+                                            <rect x="355.5" y="258.3" class="st7" width="9" height="152.3"/>
+                                            <rect x="373.6" y="258.3" class="st7" width="9" height="152.3"/>
+                                            <rect x="305.2" y="191.6" class="st6" width="127" height="79.5"/>
+                                            <rect x="305.2" y="376.3" class="st6" width="127" height="79.5"/>
+                                            <line class="st3" x1="897.7" y1="279.9" x2="979.7" y2="279.9"/>
+                                            <line class="st3" x1="979.7" y1="277.9" x2="979.7" y2="366.9"/>
+                                            <line class="st3" x1="899.7" y1="364.9" x2="981.7" y2="364.9"/>
+                                            <line class="st3" x1="248.7" y1="280.9" x2="330.7" y2="280.9"/>
+                                            <line class="st3" x1="250.7" y1="367.9" x2="250.7" y2="278.9"/>
+                                            <line class="st3" x1="330.7" y1="367.9" x2="248.7" y2="367.9"/>
+                                            <line class="st3" x1="1182.7" y1="446.9" x2="1100.7" y2="446.9"/>
+                                            <line class="st3" x1="1100.7" y1="448.9" x2="1100.7" y2="359.9"/>
+                                            <line class="st3" x1="1181.7" y1="360.9" x2="1099.7" y2="360.9"/>
+                                            <line class="st3" x1="49.7" y1="200.9" x2="131.7" y2="200.9"/>
+                                            <line class="st3" x1="131.7" y1="198.9" x2="131.7" y2="287.9"/>
+                                            <line class="st3" x1="50.7" y1="286.9" x2="132.7" y2="286.9"/>
+                                            <rect x="257.2" y="311.4" class="st8" width="24" height="24"/>
+                                            <rect x="281.2" y="287.4" class="st8" width="24" height="24"/>
+                                            <rect x="281.2" y="311.4" class="st8" width="24" height="24"/>
+                                            <rect x="281.2" y="335.4" class="st8" width="24" height="24"/>
+                                            <rect x="305.2" y="282.4" class="st8" width="24" height="24"/>
+                                            <rect x="305.2" y="306.4" class="st8" width="24" height="24"/>
+                                            <rect x="305.2" y="324.4" class="st8" width="24" height="24"/>
+                                            <rect x="305.2" y="341.4" class="st8" width="24" height="24"/>
+                                            <rect x="947.2" y="311.4" transform="matrix(-1 -1.224647e-16 1.224647e-16 -1 1918.3274 646.8938)" class="st8" width="24" height="24"/>
+                                            <rect x="923.2" y="335.4" transform="matrix(-1 -1.224647e-16 1.224647e-16 -1 1870.3274 694.8938)" class="st8" width="24" height="24"/>
+                                            <rect x="923.2" y="311.4" transform="matrix(-1 -1.224647e-16 1.224647e-16 -1 1870.3274 646.8938)" class="st8" width="24" height="24"/>
+                                            <rect x="923.2" y="287.4" transform="matrix(-1 -1.224647e-16 1.224647e-16 -1 1870.3274 598.8938)" class="st8" width="24" height="24"/>
+                                            <rect x="899" y="340.2" transform="matrix(-1 -1.224647e-16 1.224647e-16 -1 1822.3274 704.6438)" class="st8" width="24.2" height="24.2"/>
+                                            <rect x="899" y="315.9" transform="matrix(-1 -1.224647e-16 1.224647e-16 -1 1822.3274 656.1438)" class="st8" width="24.2" height="24.2"/>
+                                            <rect x="899.2" y="298.4" transform="matrix(-1 -1.224647e-16 1.224647e-16 -1 1822.3274 620.8938)" class="st8" width="24" height="24"/>
+                                            <rect x="899.2" y="281.4" transform="matrix(-1 -1.224647e-16 1.224647e-16 -1 1822.3274 586.8938)" class="st8" width="24" height="24"/>
+                                            <rect x="434.2" y="190.4" class="st8" width="24" height="24"/>
+                                            <rect x="434.2" y="239.4" class="st8" width="24" height="24"/>
+                                            <rect x="434.2" y="285.4" class="st8" width="24" height="24"/>
+                                            <rect x="434.2" y="334.4" class="st8" width="24" height="24"/>
+                                            <rect x="434.2" y="383.4" class="st8" width="24" height="24"/>
+                                            <rect x="434.2" y="432.4" class="st8" width="24" height="24"/>
+                                            <rect x="857.8" y="235.2" transform="matrix(-1 -1.224647e-16 1.224647e-16 -1 1724.5702 622.7773)" class="st7" width="9" height="152.3"/>
+                                            <rect x="839.8" y="235.2" transform="matrix(-1 -1.224647e-16 1.224647e-16 -1 1688.5305 622.7773)" class="st7" width="9" height="152.3"/>
+                                            <rect x="790.2" y="374.9" transform="matrix(-1 -1.224647e-16 1.224647e-16 -1 1707.3694 829.1865)" class="st6" width="127" height="79.5"/>
+                                            <rect x="790.2" y="190.1" transform="matrix(-1 -1.224647e-16 1.224647e-16 -1 1707.3694 459.6445)" class="st6" width="127" height="79.5"/>
+                                            <rect x="764.2" y="431.4" transform="matrix(-1 -1.224647e-16 1.224647e-16 -1 1552.3274 886.8938)" class="st8" width="24" height="24"/>
+                                            <rect x="764.2" y="382.4" transform="matrix(-1 -1.224647e-16 1.224647e-16 -1 1552.3274 788.8938)" class="st8" width="24" height="24"/>
+                                            <rect x="764.2" y="336.4" transform="matrix(-1 -1.224647e-16 1.224647e-16 -1 1552.3274 696.8938)" class="st8" width="24" height="24"/>
+                                            <rect x="764.2" y="287.4" transform="matrix(-1 -1.224647e-16 1.224647e-16 -1 1552.3274 598.8938)" class="st8" width="24" height="24"/>
+                                            <rect x="764.2" y="238.4" transform="matrix(-1 -1.224647e-16 1.224647e-16 -1 1552.3274 500.8938)" class="st8" width="24" height="24"/>
+                                            <rect x="764.2" y="189.4" transform="matrix(-1 -1.224647e-16 1.224647e-16 -1 1552.3274 402.8938)" class="st8" width="24" height="24"/>
+                                            <line class="st9" x1="512.2" y1="53.9" x2="512.2" y2="198.4"/>
+                                            <line class="st9" x1="723.2" y1="53.9" x2="723.2" y2="198.4"/>
+                                            <line class="st10" x1="509.7" y1="197.9" x2="547.7" y2="197.9"/>
+                                            <line class="st10" x1="687.7" y1="198.9" x2="725.7" y2="198.9"/>
+                                            <line class="st9" x1="724.2" y1="597.9" x2="724.2" y2="453.4"/>
+                                            <line class="st9" x1="513.2" y1="597.9" x2="513.2" y2="453.4"/>
+                                            <line class="st10" x1="726.7" y1="453.9" x2="688.7" y2="453.9"/>
+                                            <line class="st10" x1="548.7" y1="452.9" x2="510.7" y2="452.9"/>
+                                            <rect x="1119.7" y="53.9" class="st11" width="62" height="54"/>
+                                            <rect x="1120.7" y="543.9" class="st11" width="62" height="54"/>
+                                            <rect x="52.7" y="544.9" class="st11" width="62" height="54"/>
+                                            <rect x="52.7" y="53.9" class="st11" width="62" height="54"/>
+                                            <use xlink:href="#Arrow_26"  class="stl1off" onclick="insertTime('portal 1');" width="75.7" height="56.3" id="XMLID_1_" x="-32.9" y="-27.1" transform="matrix(6.850921e-17 -0.7655 -1.1002 -4.609258e-17 1151.1199 81.4469)" style="overflow:visible;"/>
+                                            <use xlink:href="#Arrow_26"  class="stl1off" onclick="insertTime('portal 2');" width="75.7" height="56.3" id="XMLID_2_" x="-32.9" y="-27.1" transform="matrix(6.850921e-17 -0.7655 -1.1002 -4.609258e-17 1151.1199 571.4469)" style="overflow:visible;"/>
+                                            <use xlink:href="#Arrow_26"  class="stl1off" onclick="insertTime('portal 3');" width="75.7" height="56.3" id="XMLID_3_" x="-32.9" y="-27.1" transform="matrix(6.850921e-17 -0.7655 -1.1002 -4.609258e-17 84.1199 571.4469)" style="overflow:visible;"/>
+                                            <use xlink:href="#Arrow_26"  class="stl1off" onclick="insertTime('portal 4');" width="75.7" height="56.3" id="XMLID_4_" x="-32.9" y="-27.1" transform="matrix(6.850921e-17 -0.7655 -1.1002 -4.609258e-17 84.1199 81.4469)" style="overflow:visible;"/>
+                                            <use xlink:href="#Arrow_26"  class="stl1off" onclick="insertTime('competitive cubes 1');" width="75.7" height="56.3" id="XMLID_5_" x="-32.9" y="-27.1" transform="matrix(6.850921e-17 -0.7655 -1.1002 -4.609258e-17 407.1199 316.4469)" style="overflow:visible;"/>
+                                            <use xlink:href="#Arrow_26"  class="stl1off" onclick="insertTime('competitive cubes 2');" width="75.7" height="56.3" id="XMLID_6_" x="-32.9" y="-27.1" transform="matrix(6.850921e-17 -0.7655 -1.1002 -4.609258e-17 814.1199 316.4469)" style="overflow:visible;"/>
+                                            <use xlink:href="#Arrow_26"  class="stl1" onclick="insertTime('scale 1');" width="75.7" height="56.3" id="XMLID_7_" x="-32.9" y="-27.1" transform="matrix(2.523945e-17 0.7655 1.1002 -8.864069e-17 617.1199 447.4469)" style="overflow:visible;"/>
+                                            <use xlink:href="#Arrow_26"  class="stl1" onclick="insertTime('scale 2');" width="75.7" height="56.3" id="XMLID_8_" x="-32.9" y="-27.1" transform="matrix(2.523945e-17 0.7655 1.1002 -8.864069e-17 618.1199 197.4469)" style="overflow:visible;"/>
+                                            <use xlink:href="#Arrow_26"  class="stl1" onclick="insertTime('switch 1');" width="75.7" height="56.3" id="XMLID_9_" x="-32.9" y="-27.1" transform="matrix(2.523945e-17 0.7655 1.1002 -8.864069e-17 854.1199 229.4469)" style="overflow:visible;"/>
+                                            <use xlink:href="#Arrow_26"  class="stl1" onclick="insertTime('switch 2');" width="75.7" height="56.3" id="XMLID_10_" x="-32.9" y="-27.1" transform="matrix(2.523945e-17 0.7655 1.1002 -8.864069e-17 854.1199 414.4469)" style="overflow:visible;"/>
+                                            <use xlink:href="#Arrow_26"  class="stl1" onclick="insertTime('switch 3');" width="75.7" height="56.3" id="XMLID_11_" x="-32.9" y="-27.1" transform="matrix(2.523945e-17 0.7655 1.1002 -8.864069e-17 369.1199 416.4469)" style="overflow:visible;"/>
+                                            <use xlink:href="#Arrow_26"  class="stl1" onclick="insertTime('switch 4');" width="75.7" height="56.3" id="XMLID_12_" x="-32.9" y="-27.1" transform="matrix(2.523945e-17 0.7655 1.1002 -8.864069e-17 369.1199 229.4469)" style="overflow:visible;"/>
+                                            <use xlink:href="#Arrow_26"  class="stl1off" onclick="insertTime('cube zone 1');" width="75.7" height="56.3" id="XMLID_13_" x="-32.9" y="-27.1" transform="matrix(6.850921e-17 -0.7655 -1.1002 -4.609258e-17 227.1199 315.4469)" style="overflow:visible;"/>
+                                            <use xlink:href="#Arrow_26"  class="stl1off" onclick="insertTime('cube zone 2');" width="75.7" height="56.3" id="XMLID_14_" x="-32.9" y="-27.1" transform="matrix(6.850921e-17 -0.7655 -1.1002 -4.609258e-17 1003.1199 316.4469)" style="overflow:visible;"/>
+                                            <use xlink:href="#Arrow_26"  class="stl1off" onclick="insertTime('exchange zone');" width="75.7" height="56.3" id="XMLID_15_" x="-32.9" y="-27.1" transform="matrix(6.850921e-17 -0.7655 -1.1002 -4.609258e-17 152.1199 214.4469)" style="overflow:visible;"/>
+                                            <use xlink:href="#Arrow_26"  class="stl1" onclick="insertTime('exchange zone');" width="75.7" height="56.3" id="XMLID_16_" x="-32.9" y="-27.1" transform="matrix(2.523945e-17 0.7655 1.1002 -8.864069e-17 152.1199 271.4469)" style="overflow:visible;"/>
+                                            <use xlink:href="#Arrow_26"  class="stl1off" onclick="insertTime('exchange zone');" width="75.7" height="56.3" id="XMLID_18_" x="-32.9" y="-27.1" transform="matrix(6.850921e-17 -0.7655 -1.1002 -4.609258e-17 1081.1199 375.4469)" style="overflow:visible;"/>
+                                            <use xlink:href="#Arrow_26"  class="stl1" onclick="insertTime('exchange zone');" width="75.7" height="56.3"" id="XMLID_17_" x="-32.9" y="-27.1" transform="matrix(2.523945e-17 0.7655 1.1002 -8.864069e-17 1081.1199 432.4469)" style="overflow:visible;"/>
+                                            <text transform="matrix(1 0 0 1 70.6105 167.5485)" class="st13 st14">1</text>
+                                            <text transform="matrix(1 0 0 1 63.6105 352.5485)" class="st13 st14">2</text>
+                                            <text transform="matrix(1 0 0 1 62.6105 424.5485)" class="st13 st14">3</text>
+                                            <text transform="matrix(1 0 0 1 62.6105 500.5485)" class="st13 st14">4</text>
+                                            <text transform="matrix(1 0 0 1 1151.1237 509.1501)" class="st13 st14">1</text>
+                                            <text transform="matrix(1 0 0 1 1132.1237 337.1501)" class="st13 st14">2</text>
+                                            <text transform="matrix(1 0 0 1 1131.1237 258.1501)" class="st13 st14">3</text>
+                                            <text transform="matrix(1 0 0 1 1130.1237 181.1501)" class="st13 st14">4</text>
+                                            </svg>
+
+                                        <center>
+                                            <button type="button" onclick="insertTime('Defended');"
+                                                    class="btn btn-secondary">Defended
+                                            </button>
+                                            <button type="button" onclick="insertTime('Defending');"
+                                                    class="btn btn-secondary">Defending
+                                            </button>
+                                            <button type="button" onclick="insertTime('Disabled');"
+                                                    class="btn btn-secondary">Disabled
+                                            </button>
+                                            <button type="button" onclick="insertTime('NL Disabled');"
+                                                    class="btn btn-secondary">No Longer Disabled
+                                            </button>
+                                            <button type="button" onclick="insertTime('Cube Dropped');"
+                                                    class="btn btn-secondary">Dropped Cube
+                                            </button>
+                                            <br/>
+                                            <br/>
+                                            <center><button type="button" onclick="insertTime('feelsbadman'); $.notify('Ooof', 'warn');" class="btn btn-warning" style="font-size: 15pt;">FeelsBadMan :(</button></center>
+                                            <br />
+              
+                                            <button type="button" onclick="resetLog();"
+                                                    class="btn btn-danger">Reset Last Input
+                                            </button>
+                                            <br /><br />
+                                            <label>Comments: </label>
+                                            <input id="commentBox" onchange="fillData();" type="text" style="width: 400px;"/>
+                                        </center>
+
+                                        <form>
+                                            <div class="row">
+                                                <div class="col">
+                                                    <h4>Tele-Op</h4>
+                                                    <label>Climb?:&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;</label>
+                                                    <input id="rampClimb" type="checkbox" class="form-check-inline"
+                                                           style="transform: scale(1.3);" onclick="fillData();"/> Ramp
+                                                    Bot
+                                                    <input id="climber" type="checkbox" class="form-check-inline"
+                                                           style="transform: scale(1.3);" onclick="fillData();"/>
+                                                    Climber
+                                                    <input id="climbOther" type="checkbox" class="form-check-inline"
+                                                           style="transform: scale(1.3);" onclick="fillData();"/> Climb
+                                                    on Other
+                                                    <input id="rampOther" type="checkbox" class="form-check-inline"
+                                                           style="transform: scale(1.3);" onclick="fillData();"/> Ramp
+                                                    on Other
+                                                    <input id="parkOther" type="checkbox" class="form-check-inline"
+                                                           style="transform: scale(1.3);" onclick="fillData();"/> Park
+                                                    <input id="noClimb" type="checkbox" class="form-check-inline"
+                                                           style="transform: scale(1.3);" onclick="fillData();"/> None
+
+                                                    <br/>
+                                                    <div id="teamClimbed">
+                                                        <label for="otherTeamText">Team Climbed On: </label>
+                                                        <input type="text" id="otherTeamText" onchange="fillData();"/>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </form>
+                                    </div>
+                                    <div class="col-4">
+                                        <center>
+                                            <div style="position: fixed; top: 249px;">
+                                                <p style="font-size: 60pt;"><span id="min">0</span>:<span
+                                                        id="sec">00</span></p>
+                                                <button class="btn btn-success btn-lg" id="start">Start</button>
+                                                <button class="btn btn-danger btn-lg" id="stop" disabled>Stop</button>
+                                                <button class="btn btn-dark btn-lg" id="reset">Reset</button>
+                                            </div>
+                                        </center>
+                                        <br/> <br/>
+                                        <center>
+                                            <div style="position: fixed; top: 150px; width: 246px;">
+                                            <button type="button" id="export" class="btn btn-success btn-lg btn-block"
+                                                    onclick="saveTable();">Export
+                                            </button>
+                                            <button type="button" id="restartFields"
+                                                    class="btn btn-dark btn-lg btn-block" onclick="clearFields();">
+                                                New/Reset Fields
+                                            </button>
+                                            </div>
+                                        </center>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="content" id="debug" style="display: none;">
+                    <div class="card ">
+                        <div class="card-header ">
+                            <h4 class="card-title">Data Table</h4>
+                            <p class="card-category">All info from inputs will show up here</p>
+                        </div>
+                        <div class="card-body">
+                            <table class="table" id="dataTable">
+                                <tbody>
+                                <tr id="titleName">
+                                    <td>scout name</td>
+                                    <td>week #</td>
+                                    <td>team #</td>
+                                    <td>match #</td>
+                                    <td>alliance</td>
+                                    <td>setup</td>
+                                    <td>auton</td>
+                                    <td>climb type</td>
+                                    <td>climb on</td>
+                                    <td>comments</td>
+                                </tr>
+                                <tr id="userInputs">
+                                    <td id="scoutNameD"></td>
+                                    <td id="weekNum"></td>
+                                    <td id="teamNumD"></td>
+                                    <td id="matchNumD"></td>
+                                    <td id="allianceCatD"></td>
+                                    <td id="setupD"></td>
+                                    <td id="autonD"></td>
+                                    <td id="climbD"></td>
+                                    <td id="climbOnD"></td>
+                                    <td id="commentD"></td>
+                                </tr>
+                                </tbody>
+                            </table>
+                            <br/>
+                            <table class="table" id="pitTable">
+                                <tbody>
+                                <tr id="titlePit">
+                                    <td>scout name</td>
+                                    <td>team #</td>
+                                    <td>drive type</td>
+                                    <td>language</td>
+                                    <td>weight</td>
+                                    <td>height</td>
+                                    <td>frame</td>
+                                    <td>climb type</td>
+                                    <td>autons</td>
+                                    <td>place on scale</td>
+                                    <td>place cubes</td>
+                                </tr>
+                                <tr id="userInputsPit">
+                                    <td id="scoutNamePitD"></td>
+                                    <td id="pitTeamNum"></td>
+                                    <td id="driveType"></td>
+                                    <td id="languageType"></td>
+                                    <td id="weightD"></td>
+                                    <td id="heightD"></td>
+                                    <td id="perimD"></td>
+                                    <td id="climbTypeD"></td>
+                                    <td id="autonTypeD"></td>
+                                    <td id="onScaleD"></td>
+                                    <td id="placeCubeD"></td>
+                                </tr>
+                                </tbody>
+                            </table>
+                            <br/>
+                            <table class="table" id="timeLogs">
+                                <tbody>
+                                <tr id="timeName">
+
+                                </tr>
+                                <tr id="timeCounts">
+
+                                </tr>
+                                </tbody>
+                            </table>
+                        </div>
+            </div>
+        </div>
+        <footer class="footer">
+            <div class="container">
+                <nav>
+                    <p class="copyright text-right">
+                        2018 © Team 4362 - GEMS Robotics
+                    </p>
+                </nav>
+            </div>
+        </footer>
+    </div>
+</div>
+
+<!-- GemHunt references -->
+<script src="services/mobileApps/settings/GemHunt.js"></script>
+<script type="text/javascript" src="scripts/platformOverrides.js"></script>
+<!--   Core JS Files   -->
+<script src="assets/js/core/jquery.3.2.1.min.js" type="text/javascript"></script>
+<script src="assets/js/core/popper.min.js" type="text/javascript"></script>
+<script src="assets/js/core/bootstrap.min.js" type="text/javascript"></script>
+<!--  Plugin for Switches, full documentation here: http://www.jque.re/plugins/version3/bootstrap.switch/ -->
+<script src="assets/js/plugins/bootstrap-switch.js"></script>
+<!--  Chartist Plugin  -->
+<script src="assets/js/plugins/chartist.min.js"></script>
+<!--  Notifications Plugin    -->
+<script src="assets/js/plugins/bootstrap-notify.js"></script>
+<!-- Control Center for Light Bootstrap Dashboard: -->
+<script src="assets/js/light-bootstrap-dashboard.js?v=2.0.1" type="text/javascript"></script>
+<script src="assets/js/FileSaver.js" type="text/javascript"></script>
+<script src="assets/js/tableexport.js" type="text/javascript"></script>
+<script src="assets/js/notify.js" type="text/javascript"></script>
+<script src="assets/js/drawingboard.min.js"></script>
+
+<script type="text/javascript" charset="utf-8">
+    function onLoad() {
+        document.addEventListener("deviceready", onDeviceReady, false);
+        idTeams();
+        fillData();
+    }
+
+    function onDeviceReady() {
+        makeTemp();
+    }
+
+</script>
+
+<script>
+    var customBoard2 = new DrawingBoard.Board('paint', {
+        controls: [
+            'Color',
+            { Size: { type: 'dropdown' } },
+            { DrawingMode: { filler: false } },
+            'Navigation',
+            'Download'
+        ],
+        size: 1,
+        webStorage: 'session',
+        enlargeYourContainer: true
+    });
+</script>
+</body>
+</html>
