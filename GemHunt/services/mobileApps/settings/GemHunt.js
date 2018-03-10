@@ -353,17 +353,10 @@ function saveTable() {
         exportButtons: false
      });
 	 
-	 instance3 = new TableExport(ExportButtons, {
-		 formats: ['txt'],
-		 headers: true,
-		 filename: 'Team ' + document.getElementById("teams").value + ' Match ' + document.getElementById("matchNums").value + " - Raw",
-		 exportButtons: false
-	 });
-	 
     //                                        // "id" of selector    // format
     exportData = instance.getExportData()['dataTable']['csv'];
     exportData2 = instance2.getExportData()['timeLogs']['txt'];
-	exportData3 = instance3.getExportData()['rawTime']['txt'];
+	//exportData3 = instance3.getExportData()['rawTime']['txt'];
 
     XLSbutton = document.getElementById('export');
 
@@ -376,7 +369,7 @@ function exportTableStuff() {
     //                   // data          // mime              // name              // extension
     instance.export2file(exportData.data, exportData.mimeType, exportData.filename, exportData.fileExtension);
     instance2.export2file(exportData2.data, exportData2.mimeType, exportData2.filename, exportData2.fileExtension);
-	instance3.export2file(exportData3.data, exportData3.mimeType, exportData3.filename, exportData3.fileExtension);
+	//instance3.export2file(exportData3.data, exportData3.mimeType, exportData3.filename, exportData3.fileExtension);
 	
     $.notify("File Exported Successfully", "success");
 }
@@ -569,9 +562,20 @@ function insertTime(logType) {
         startPoint = logType.toLowerCase();
         totCycle = logType.toLowerCase();
         console.log("starttime: " + startTime + " startpoint: " + startPoint);
+		var timeSec;
+		var timeMin;
 		
-		document.getElementById("rawTimeName").innerHTML += '<td>' + startPoint + '</td>';
-		document.getElementById("rawTimeCounts").innerHTML += '<td>' + startTime + '</td>';
+		if (startTime % 60 <= 9) {
+            timeSec = '0' + startTime % 60;
+        }
+        else {
+            timeSec = startTime % 60;
+        }
+
+        timeMin = Math.floor(startTime / 60);
+		
+		document.getElementById("titleName").innerHTML += '<td>' + startPoint + '</td>';
+		document.getElementById("userInputs").innerHTML += '<td>' + timeMin + ':' + timeSec + '</td>';
 		
         $.notify("Started Cycle", "success");
         return;
@@ -583,8 +587,20 @@ function insertTime(logType) {
         totCycle += "_" + logType.toLowerCase();
         console.log("stoptime: " + stopTime + " stoppoint: " + stopPoint);
 		
-		document.getElementById("rawTimeName").innerHTML += '<td>' + stopPoint + '</td>';
-		document.getElementById("rawTimeCounts").innerHTML += '<td>' + stopTime + '</td>';
+	    var timeSecRaw;
+		var timeMinRaw;
+		
+		if (stopTime % 60 <= 9) {
+            timeSecRaw = '0' + stopTime % 60;
+        }
+        else {
+            timeSecRaw = stopTime % 60;
+        }
+
+        timeMinRaw = Math.floor(stopTime / 60);
+		
+		document.getElementById("titleName").innerHTML += '<td>' + stopPoint + '</td>';
+		document.getElementById("userInputs").innerHTML += '<td>' + timeMinRaw + ':' + timeSecRaw + '</td>';
 		
         logPoint = 0;
 
