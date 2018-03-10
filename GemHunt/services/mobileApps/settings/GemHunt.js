@@ -280,7 +280,9 @@ var ExportButtons;
 var exportData;
 var instance;
 var instance2;
+var instance3;
 var exportData2;
+var exportData3;
 var XLSbutton;
 
 function saveTable() {
@@ -288,7 +290,8 @@ function saveTable() {
     var fullNum = 0;
     var avgVal;
     var counter = 0;
-    for (i in avgData) {
+	
+/*     for (i in avgData) {
         for (var j = 0; j < avgData[i].length; j++) {
             var array = avgData[i];
 
@@ -319,7 +322,7 @@ function saveTable() {
         document.getElementById("userInputs").innerHTML += '<td>' + timeMin + ":" + timeSec + '</td>';
         fullNum = 0;
         counter = 0;
-    }
+    } */
 
     var requiredLength = 90;
 
@@ -346,13 +349,21 @@ function saveTable() {
     instance2 = new TableExport(ExportButtons,{
         formats: ['txt'],
         headers: true,
-        filename: 'Team ' + document.getElementById("teams").value + ' Match ' + document.getElementById("matchNums").value,
+        filename: 'Team ' + document.getElementById("teams").value + ' Match ' + document.getElementById("matchNums").value + " - Cycles", 
         exportButtons: false
      });
-
+	 
+	 instance3 = new TableExport(ExportButtons, {
+		 formats: ['txt'],
+		 headers: true,
+		 filename: 'Team ' + document.getElementById("teams").value + ' Match ' + document.getElementById("matchNums").value + " - Raw",
+		 exportButtons: false
+	 });
+	 
     //                                        // "id" of selector    // format
     exportData = instance.getExportData()['dataTable']['csv'];
     exportData2 = instance2.getExportData()['timeLogs']['txt'];
+	exportData3 = instance3.getExportData()['rawTime']['txt'];
 
     XLSbutton = document.getElementById('export');
 
@@ -365,7 +376,8 @@ function exportTableStuff() {
     //                   // data          // mime              // name              // extension
     instance.export2file(exportData.data, exportData.mimeType, exportData.filename, exportData.fileExtension);
     instance2.export2file(exportData2.data, exportData2.mimeType, exportData2.filename, exportData2.fileExtension);
-
+	instance3.export2file(exportData3.data, exportData3.mimeType, exportData3.filename, exportData3.fileExtension);
+	
     $.notify("File Exported Successfully", "success");
 }
 
@@ -557,6 +569,10 @@ function insertTime(logType) {
         startPoint = logType.toLowerCase();
         totCycle = logType.toLowerCase();
         console.log("starttime: " + startTime + " startpoint: " + startPoint);
+		
+		document.getElementById("rawTimeName").innerHTML += '<td>' + startPoint + '</td>';
+		document.getElementById("rawTimeCounts").innerHTML += '<td>' + startTime + '</td>';
+		
         $.notify("Started Cycle", "success");
         return;
     }
@@ -566,6 +582,10 @@ function insertTime(logType) {
         stopPoint = logType.toLowerCase();
         totCycle += "_" + logType.toLowerCase();
         console.log("stoptime: " + stopTime + " stoppoint: " + stopPoint);
+		
+		document.getElementById("rawTimeName").innerHTML += '<td>' + stopPoint + '</td>';
+		document.getElementById("rawTimeCounts").innerHTML += '<td>' + stopTime + '</td>';
+		
         logPoint = 0;
 
         var totTime = stopTime - startTime;
@@ -645,6 +665,15 @@ function clearFields() {
 		inputLogRow.deleteCell(i-1);
 	}
 
+	var totalRawRows = document.getElementById('rawTime').rows[0].cells.length;
+	var titleRawRow = document.getElementById('rawTimeName');
+	var inputRawRow = document.getElementById('rawTimeCounts');
+	
+	for (var i = totalRawRows; i > 0; i--) {
+		titleRawRow.deleteCell(i-1);
+		inputRawRow.deleteCell(i-1);
+	}
+	
     logPoint = 1;
 	switchcount = 0;
 	scalecount = 0;
