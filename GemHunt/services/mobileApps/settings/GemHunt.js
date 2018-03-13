@@ -577,7 +577,7 @@ function insertTime(logType) {
 		document.getElementById("titleName").innerHTML += '<td>' + startPoint + '</td>';
 		document.getElementById("userInputs").innerHTML += '<td>' + timeMin + ':' + timeSec + '</td>';
 		
-        $.notify("Started Cycle", "success");
+        $("#notifbox").notify("Started Cycle", "success");
         return;
     }
 
@@ -638,7 +638,7 @@ function insertTime(logType) {
             ":" +
             timeSec + '</td>';
 
-        $.notify("Added Log/Ended Cycle", "success");
+        $("#notifbox").notify("Added Log/Ended Cycle", "success");
     }
 }
 
