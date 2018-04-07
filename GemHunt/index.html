@@ -254,246 +254,61 @@
                                                             </div>
                                                         </div>
                                                     </div>
-
-                                                    <h4>Setup</h4>
-                                                    <input id="firstStart" type="checkbox" class="form-check-inline"
-                                                           style="transform: scale(1.3);" onclick="fillData();"/> 1
-                                                    <input id="secondStart" type="checkbox" class="form-check-inline"
-                                                           style="transform: scale(1.3);" onclick="fillData();"/> 2
-                                                    <input id="thirdStart" type="checkbox" class="form-check-inline"
-                                                           style="transform: scale(1.3);" onclick="fillData();"/> 3
-                                                    <input id="fourthStart" type="checkbox" class="form-check-inline"
-                                                           style="transform: scale(1.3);" onclick="fillData();"/> 4
-                                                    <br/>
                                                     <br/>
                                                     <h4>Autonomous</h4>
-                                                    <input id="noAuto" type="checkbox" class="form-check-inline"
+                                                    <input id="noAuto" type="checkbox" class="form-check-inline auton"
                                                            style="transform: scale(1.3);" onclick="fillData();"/> None
-                                                    <input id="moveAuto" type="checkbox" class="form-check-inline"
+                                                    <input id="moveAuto" type="checkbox" class="form-check-inline auton"
                                                            style="transform: scale(1.3);" onclick="fillData();"/> Move
-                                                    <input id="preloadAuto" type="checkbox" class="form-check-inline" 
-                                                           style="transform: scale(1.3);" onclick="fillData(); insertTime('preloaded');"/> Pre-Loaded Cube
                                                     <br/>
                                                 </div>
                                             </div>
                                         </form>
                                         <br />
-                                        <button type="button" onclick="insertTime('Floor Cube');"
-                                                class="btn btn-danger">Floor Cube
-                                        </button>
-                                        <br />							
-											<div id="notifbox"></div>
-                                        <?xml version="1.0" encoding="utf-8"?>
-                                        <!-- Generator: Adobe Illustrator 22.0.1, SVG Export Plug-In . SVG Version: 6.00 Build 0)  -->
-                                        <svg version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
-                                                 viewBox="0 0 1232.7 651" style="enable-background:new 0 0 1232.7 651;" xml:space="preserve">
-                                            <style type="text/css">
-                                                .st0 {
-                                                    fill: none;
-                                                }
-
-                                                .st1 {
-                                                    fill: #00D238;
-                                                }
-
-                                                .stl1off {
-                                                    fill: #FFFFFF;
-                                                }
-
-                                                .st2 {
-                                                    fill: #808080;
-                                                }
-
-                                                .st3 {
-                                                    fill: none;
-                                                    stroke: #000000;
-                                                    stroke-width: 4;
-                                                    stroke-miterlimit: 10;
-                                                }
-
-                                                .st4 {
-                                                    fill: none;
-                                                    stroke: #000000;
-                                                    stroke-width: 2;
-                                                    stroke-miterlimit: 10;
-                                                }
-
-                                                .st5 {
-                                                    fill: none;
-                                                    stroke: #E6E6E6;
-                                                    stroke-width: 7;
-                                                    stroke-miterlimit: 10;
-                                                }
-
-                                                .st6 {
-                                                    fill: #333333;
-                                                    stroke: #000000;
-                                                    stroke-width: 3;
-                                                    stroke-miterlimit: 10;
-                                                }
-
-                                                .st7 {
-                                                    fill: #E2E2E2;
-                                                }
-
-                                                .st8 {
-                                                    fill: #DDC700;
-                                                    stroke: #000000;
-                                                    stroke-miterlimit: 10;
-                                                }
-
-                                                .st9 {
-                                                    fill: #FFFFFF;
-                                                    stroke: #FFFFFF;
-                                                    stroke-width: 5;
-                                                    stroke-miterlimit: 10;
-                                                }
-
-                                                .st10 {
-                                                    fill: #FFFFFF;
-                                                    stroke: #FFFFFF;
-                                                    stroke-width: 4;
-                                                    stroke-miterlimit: 10;
-                                                }
-
-                                                .st11 {
-                                                    fill: none;
-                                                    stroke: #E6E6E6;
-                                                    stroke-width: 4;
-                                                    stroke-miterlimit: 10;
-                                                }
-                                                .st12{fill:#999999;}
-                                                .st13{font-family:'Gravedigger';}
-                                                .st14{font-size:38px;}
-                                            </style>
-											
-                                            <symbol  id="Arrow_26" viewBox="-22.9 -13.1 45.7 26.3">
-                                                <rect x="-22.9" y="-13.1" class="st0" width="45.7" height="26.3"/>
-                                                <g>
-                                                    <polygon points="-22.9,-6.3 0.1,-6.3 0.1,-13.1 22.9,0 0.1,13.1 0.1,6.3 -22.9,6.3 		"/>
-                                                </g>
-                                            </symbol>
-                                            <rect x="52.7" y="52.9" class="st2" width="1130" height="551"/>
-                                            <line class="st3" x1="951.2" y1="50.9" x2="951.2" y2="601.9"/>
-                                            <line class="st3" x1="277.2" y1="50.9" x2="277.2" y2="601.9"/>
-                                            <line class="st4" x1="617.2" y1="51.4" x2="617.2" y2="602.4"/>
-                                            <rect x="48.7" y="50.9" class="st5" width="1136" height="551"/>
-                                            <rect x="549.7" y="155.7" class="st6" width="135.8" height="85"/>
-                                            <rect x="550.6" y="404.5" class="st6" width="135.8" height="85"/>
-                                            <rect x="608.9" y="241.1" class="st7" width="18.4" height="162.9"/>
-                                            <rect x="355.5" y="258.3" class="st7" width="9" height="152.3"/>
-                                            <rect x="373.6" y="258.3" class="st7" width="9" height="152.3"/>
-                                            <rect x="305.2" y="191.6" class="st6" width="127" height="79.5"/>
-                                            <rect x="305.2" y="376.3" class="st6" width="127" height="79.5"/>
-                                            <line class="st3" x1="897.7" y1="279.9" x2="979.7" y2="279.9"/>
-                                            <line class="st3" x1="979.7" y1="277.9" x2="979.7" y2="366.9"/>
-                                            <line class="st3" x1="899.7" y1="364.9" x2="981.7" y2="364.9"/>
-                                            <line class="st3" x1="248.7" y1="280.9" x2="330.7" y2="280.9"/>
-                                            <line class="st3" x1="250.7" y1="367.9" x2="250.7" y2="278.9"/>
-                                            <line class="st3" x1="330.7" y1="367.9" x2="248.7" y2="367.9"/>
-                                            <line class="st3" x1="1182.7" y1="446.9" x2="1100.7" y2="446.9"/>
-                                            <line class="st3" x1="1100.7" y1="448.9" x2="1100.7" y2="359.9"/>
-                                            <line class="st3" x1="1181.7" y1="360.9" x2="1099.7" y2="360.9"/>
-                                            <line class="st3" x1="49.7" y1="200.9" x2="131.7" y2="200.9"/>
-                                            <line class="st3" x1="131.7" y1="198.9" x2="131.7" y2="287.9"/>
-                                            <line class="st3" x1="50.7" y1="286.9" x2="132.7" y2="286.9"/>
-                                            <rect x="257.2" y="311.4" class="st8" width="24" height="24"/>
-                                            <rect x="281.2" y="287.4" class="st8" width="24" height="24"/>
-                                            <rect x="281.2" y="311.4" class="st8" width="24" height="24"/>
-                                            <rect x="281.2" y="335.4" class="st8" width="24" height="24"/>
-                                            <rect x="305.2" y="282.4" class="st8" width="24" height="24"/>
-                                            <rect x="305.2" y="306.4" class="st8" width="24" height="24"/>
-                                            <rect x="305.2" y="324.4" class="st8" width="24" height="24"/>
-                                            <rect x="305.2" y="341.4" class="st8" width="24" height="24"/>
-                                            <rect x="947.2" y="311.4" transform="matrix(-1 -1.224647e-16 1.224647e-16 -1 1918.3274 646.8938)" class="st8" width="24" height="24"/>
-                                            <rect x="923.2" y="335.4" transform="matrix(-1 -1.224647e-16 1.224647e-16 -1 1870.3274 694.8938)" class="st8" width="24" height="24"/>
-                                            <rect x="923.2" y="311.4" transform="matrix(-1 -1.224647e-16 1.224647e-16 -1 1870.3274 646.8938)" class="st8" width="24" height="24"/>
-                                            <rect x="923.2" y="287.4" transform="matrix(-1 -1.224647e-16 1.224647e-16 -1 1870.3274 598.8938)" class="st8" width="24" height="24"/>
-                                            <rect x="899" y="340.2" transform="matrix(-1 -1.224647e-16 1.224647e-16 -1 1822.3274 704.6438)" class="st8" width="24.2" height="24.2"/>
-                                            <rect x="899" y="315.9" transform="matrix(-1 -1.224647e-16 1.224647e-16 -1 1822.3274 656.1438)" class="st8" width="24.2" height="24.2"/>
-                                            <rect x="899.2" y="298.4" transform="matrix(-1 -1.224647e-16 1.224647e-16 -1 1822.3274 620.8938)" class="st8" width="24" height="24"/>
-                                            <rect x="899.2" y="281.4" transform="matrix(-1 -1.224647e-16 1.224647e-16 -1 1822.3274 586.8938)" class="st8" width="24" height="24"/>
-                                            <rect x="434.2" y="190.4" class="st8" width="24" height="24"/>
-                                            <rect x="434.2" y="239.4" class="st8" width="24" height="24"/>
-                                            <rect x="434.2" y="285.4" class="st8" width="24" height="24"/>
-                                            <rect x="434.2" y="334.4" class="st8" width="24" height="24"/>
-                                            <rect x="434.2" y="383.4" class="st8" width="24" height="24"/>
-                                            <rect x="434.2" y="432.4" class="st8" width="24" height="24"/>
-                                            <rect x="857.8" y="235.2" transform="matrix(-1 -1.224647e-16 1.224647e-16 -1 1724.5702 622.7773)" class="st7" width="9" height="152.3"/>
-                                            <rect x="839.8" y="235.2" transform="matrix(-1 -1.224647e-16 1.224647e-16 -1 1688.5305 622.7773)" class="st7" width="9" height="152.3"/>
-                                            <rect x="790.2" y="374.9" transform="matrix(-1 -1.224647e-16 1.224647e-16 -1 1707.3694 829.1865)" class="st6" width="127" height="79.5"/>
-                                            <rect x="790.2" y="190.1" transform="matrix(-1 -1.224647e-16 1.224647e-16 -1 1707.3694 459.6445)" class="st6" width="127" height="79.5"/>
-                                            <rect x="764.2" y="431.4" transform="matrix(-1 -1.224647e-16 1.224647e-16 -1 1552.3274 886.8938)" class="st8" width="24" height="24"/>
-                                            <rect x="764.2" y="382.4" transform="matrix(-1 -1.224647e-16 1.224647e-16 -1 1552.3274 788.8938)" class="st8" width="24" height="24"/>
-                                            <rect x="764.2" y="336.4" transform="matrix(-1 -1.224647e-16 1.224647e-16 -1 1552.3274 696.8938)" class="st8" width="24" height="24"/>
-                                            <rect x="764.2" y="287.4" transform="matrix(-1 -1.224647e-16 1.224647e-16 -1 1552.3274 598.8938)" class="st8" width="24" height="24"/>
-                                            <rect x="764.2" y="238.4" transform="matrix(-1 -1.224647e-16 1.224647e-16 -1 1552.3274 500.8938)" class="st8" width="24" height="24"/>
-                                            <rect x="764.2" y="189.4" transform="matrix(-1 -1.224647e-16 1.224647e-16 -1 1552.3274 402.8938)" class="st8" width="24" height="24"/>
-                                            <line class="st9" x1="512.2" y1="53.9" x2="512.2" y2="198.4"/>
-                                            <line class="st9" x1="723.2" y1="53.9" x2="723.2" y2="198.4"/>
-                                            <line class="st10" x1="509.7" y1="197.9" x2="547.7" y2="197.9"/>
-                                            <line class="st10" x1="687.7" y1="198.9" x2="725.7" y2="198.9"/>
-                                            <line class="st9" x1="724.2" y1="597.9" x2="724.2" y2="453.4"/>
-                                            <line class="st9" x1="513.2" y1="597.9" x2="513.2" y2="453.4"/>
-                                            <line class="st10" x1="726.7" y1="453.9" x2="688.7" y2="453.9"/>
-                                            <line class="st10" x1="548.7" y1="452.9" x2="510.7" y2="452.9"/>
-                                            <rect x="1119.7" y="53.9" class="st11" width="62" height="54"/>
-                                            <rect x="1120.7" y="543.9" class="st11" width="62" height="54"/>
-                                            <rect x="52.7" y="544.9" class="st11" width="62" height="54"/>
-                                            <rect x="52.7" y="53.9" class="st11" width="62" height="54"/>
-                                            <use xlink:href="#Arrow_26"  class="stl1off" onclick="insertTime('portal 1');" width="75.7" height="56.3" id="XMLID_1_" x="-32.9" y="-27.1" transform="matrix(6.850921e-17 -0.7655 -1.1002 -4.609258e-17 1151.1199 81.4469)" style="overflow:visible;"/>
-                                            <use xlink:href="#Arrow_26"  class="stl1off" onclick="insertTime('portal 2');" width="75.7" height="56.3" id="XMLID_2_" x="-32.9" y="-27.1" transform="matrix(6.850921e-17 -0.7655 -1.1002 -4.609258e-17 1151.1199 571.4469)" style="overflow:visible;"/>
-                                            <use xlink:href="#Arrow_26"  class="stl1off" onclick="insertTime('portal 3');" width="75.7" height="56.3" id="XMLID_3_" x="-32.9" y="-27.1" transform="matrix(6.850921e-17 -0.7655 -1.1002 -4.609258e-17 84.1199 571.4469)" style="overflow:visible;"/>
-                                            <use xlink:href="#Arrow_26"  class="stl1off" onclick="insertTime('portal 4');" width="75.7" height="56.3" id="XMLID_4_" x="-32.9" y="-27.1" transform="matrix(6.850921e-17 -0.7655 -1.1002 -4.609258e-17 84.1199 81.4469)" style="overflow:visible;"/>
-                                            <use xlink:href="#Arrow_26"  class="stl1off" onclick="insertTime('competitive cubes 1');" width="75.7" height="56.3" id="XMLID_5_" x="-32.9" y="-27.1" transform="matrix(6.850921e-17 -0.7655 -1.1002 -4.609258e-17 407.1199 316.4469)" style="overflow:visible;"/>
-                                            <use xlink:href="#Arrow_26"  class="stl1off" onclick="insertTime('competitive cubes 2');" width="75.7" height="56.3" id="XMLID_6_" x="-32.9" y="-27.1" transform="matrix(6.850921e-17 -0.7655 -1.1002 -4.609258e-17 814.1199 316.4469)" style="overflow:visible;"/>
-                                            <use xlink:href="#Arrow_26"  class="stl1" onclick="insertTime('scale 1');" width="75.7" height="56.3" id="XMLID_7_" x="-32.9" y="-27.1" transform="matrix(2.523945e-17 0.7655 1.1002 -8.864069e-17 617.1199 447.4469)" style="overflow:visible;"/>
-                                            <use xlink:href="#Arrow_26"  class="stl1" onclick="insertTime('scale 2');" width="75.7" height="56.3" id="XMLID_8_" x="-32.9" y="-27.1" transform="matrix(2.523945e-17 0.7655 1.1002 -8.864069e-17 618.1199 197.4469)" style="overflow:visible;"/>
-                                            <use xlink:href="#Arrow_26"  class="stl1" onclick="insertTime('switch 1');" width="75.7" height="56.3" id="XMLID_9_" x="-32.9" y="-27.1" transform="matrix(2.523945e-17 0.7655 1.1002 -8.864069e-17 854.1199 229.4469)" style="overflow:visible;"/>
-                                            <use xlink:href="#Arrow_26"  class="stl1" onclick="insertTime('switch 2');" width="75.7" height="56.3" id="XMLID_10_" x="-32.9" y="-27.1" transform="matrix(2.523945e-17 0.7655 1.1002 -8.864069e-17 854.1199 414.4469)" style="overflow:visible;"/>
-                                            <use xlink:href="#Arrow_26"  class="stl1" onclick="insertTime('switch 3');" width="75.7" height="56.3" id="XMLID_11_" x="-32.9" y="-27.1" transform="matrix(2.523945e-17 0.7655 1.1002 -8.864069e-17 369.1199 416.4469)" style="overflow:visible;"/>
-                                            <use xlink:href="#Arrow_26"  class="stl1" onclick="insertTime('switch 4');" width="75.7" height="56.3" id="XMLID_12_" x="-32.9" y="-27.1" transform="matrix(2.523945e-17 0.7655 1.1002 -8.864069e-17 369.1199 229.4469)" style="overflow:visible;"/>
-                                            <use xlink:href="#Arrow_26"  class="stl1off" onclick="insertTime('cube zone 1');" width="75.7" height="56.3" id="XMLID_13_" x="-32.9" y="-27.1" transform="matrix(6.850921e-17 -0.7655 -1.1002 -4.609258e-17 227.1199 315.4469)" style="overflow:visible;"/>
-                                            <use xlink:href="#Arrow_26"  class="stl1off" onclick="insertTime('cube zone 2');" width="75.7" height="56.3" id="XMLID_14_" x="-32.9" y="-27.1" transform="matrix(6.850921e-17 -0.7655 -1.1002 -4.609258e-17 1003.1199 316.4469)" style="overflow:visible;"/>
-                                            <use xlink:href="#Arrow_26"  class="stl1off" onclick="insertTime('exchange zone');" width="75.7" height="56.3" id="XMLID_15_" x="-32.9" y="-27.1" transform="matrix(6.850921e-17 -0.7655 -1.1002 -4.609258e-17 152.1199 214.4469)" style="overflow:visible;"/>
-                                            <use xlink:href="#Arrow_26"  class="stl1" onclick="insertTime('exchange zone');" width="75.7" height="56.3" id="XMLID_16_" x="-32.9" y="-27.1" transform="matrix(2.523945e-17 0.7655 1.1002 -8.864069e-17 152.1199 271.4469)" style="overflow:visible;"/>
-                                            <use xlink:href="#Arrow_26"  class="stl1off" onclick="insertTime('exchange zone');" width="75.7" height="56.3" id="XMLID_18_" x="-32.9" y="-27.1" transform="matrix(6.850921e-17 -0.7655 -1.1002 -4.609258e-17 1081.1199 375.4469)" style="overflow:visible;"/>
-                                            <use xlink:href="#Arrow_26"  class="stl1" onclick="insertTime('exchange zone');" width="75.7" height="56.3"" id="XMLID_17_" x="-32.9" y="-27.1" transform="matrix(2.523945e-17 0.7655 1.1002 -8.864069e-17 1081.1199 432.4469)" style="overflow:visible;"/>
-                                            <text transform="matrix(1 0 0 1 70.6105 167.5485)" class="st13 st14">1</text>
-                                            <text transform="matrix(1 0 0 1 63.6105 352.5485)" class="st13 st14">2</text>
-                                            <text transform="matrix(1 0 0 1 62.6105 424.5485)" class="st13 st14">3</text>
-                                            <text transform="matrix(1 0 0 1 62.6105 500.5485)" class="st13 st14">4</text>
-                                            <text transform="matrix(1 0 0 1 1151.1237 509.1501)" class="st13 st14">1</text>
-                                            <text transform="matrix(1 0 0 1 1132.1237 337.1501)" class="st13 st14">2</text>
-                                            <text transform="matrix(1 0 0 1 1131.1237 258.1501)" class="st13 st14">3</text>
-                                            <text transform="matrix(1 0 0 1 1130.1237 181.1501)" class="st13 st14">4</text>
-                                            </svg>
-
-                                        <center>
-                                            <button type="button" onclick="insertTime('Defended');"
-                                                    class="btn btn-secondary">Defended
-                                            </button>
-                                            <button type="button" onclick="insertTime('Defending');"
-                                                    class="btn btn-secondary">Defending
-                                            </button>
-                                            <button type="button" onclick="insertTime('Disabled');"
-                                                    class="btn btn-secondary">Disabled
-                                            </button>
-                                            <button type="button" onclick="insertTime('NL Disabled');"
-                                                    class="btn btn-secondary">No Longer Disabled
-                                            </button>
-                                            <button type="button" onclick="insertTime('Cube Dropped');"
-                                                    class="btn btn-secondary">Dropped Cube
-                                            </button>
-                                            <br/>
-                                            <br/>
-                                            <center><button type="button" onclick="insertTime('feelsbadman'); $.notify('Ooof', 'warn');" class="btn btn-warning" style="font-size: 15pt;">FeelsBadMan :(</button></center>
-                                            <br />
-              
-                                            <button type="button" onclick="resetLog();"
-                                                    class="btn btn-danger">Reset Last Input
-                                            </button>
-                                            <br /><br />
+											<center>
+											<br>
+											<button type="button" style="width: 80%" onclick="insertTime('Vault');"
+                                                    class="btn btn-lg btn-secondary">Vault
+											</button>
+											<button type="button" style="float: right; margin-left: 5px;" onclick="deleted('Vault');" class="btn btn-md btn-danger">&nbsp;-&nbsp;</button>
+											<input type="text" id="vaultc" class="form-control" style="width: 50px; float: right;" disabled="true">
+											<br>
+											<br>
+											<button type="button" style="width: 80%" onclick="insertTime('Enemy Switch');"
+                                                    class="btn btn-lg btn-secondary">Enemy Switch
+											</button>
+											<button type="button" style="float: right; margin-left: 5px;" onclick="deleted('Enemy');" class="btn btn-md btn-danger">&nbsp;-&nbsp;</button>
+											<input type="text" id="enemyc" class="form-control" style="width: 50px; float: right;" disabled="true">
+											<br>
+											<br>
+											<button type="button" style="width: 80%" onclick="insertTime('Alliance Switch');"
+                                                    class="btn btn-lg btn-secondary">Alliance Switch
+											</button>
+											<button type="button" style="float: right; margin-left: 5px;" onclick="deleted('Alliance');" class="btn btn-md btn-danger">&nbsp;-&nbsp;</button>
+											<input type="text" id="alliancec" class="form-control" style="width: 50px; float: right;" disabled="true">
+											<br>
+											<br>
+											<button type="button" style="width: 80%" onclick="insertTime('Scale');"
+                                                    class="btn btn-lg btn-secondary">Scale
+											</button>
+											<button type="button" style="float: right; margin-left: 5px;" onclick="deleted('Scale');" class="btn btn-md btn-danger">&nbsp;-&nbsp;</button>
+											<input type="text" id="scalec" class="form-control" style="width: 50px; float: right;" disabled="true">
+											<br>
+											<br>
+											<button type="button" style="width: 80%" onclick="insertTime('Dropped Cube');"
+                                                    class="btn btn-lg btn-secondary">Dropped Cube
+											</button>
+											<button type="button" style="float: right; margin-left: 5px;" onclick="deleted('Dropped');" class="btn btn-md btn-danger">&nbsp;-&nbsp;</button>
+											<input type="text" id="droppedc" class="form-control" style="width: 50px; float: right;" disabled="true">
+											<br>
+											<br>
+											<button type="button" style="width: 80%" onclick="insertTime('Knocked');"
+                                                    class="btn btn-lg btn-secondary">Knocked Cube Off Scale
+											</button>
+											<button type="button" style="float: right; margin-left: 5px;" onclick="deleted('Knocked');" class="btn btn-md btn-danger">&nbsp;-&nbsp;</button>
+											<input type="text" id="knockedc" class="form-control" style="width: 50px; float: right;" disabled="true">
+											<br>
+											<br>
                                             <label>Comments: </label>
                                             <input id="commentBox" onchange="fillData();" type="text" style="width: 400px;"/>
                                         </center>
@@ -502,22 +317,22 @@
                                             <div class="row">
                                                 <div class="col">
                                                     <h4>Tele-Op</h4>
-                                                    <label>Climb?:&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;</label>
-                                                    <input id="rampClimb" type="checkbox" class="form-check-inline"
+                                                    <label>Climb?:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</label>
+                                                    <input id="rampClimb" type="checkbox" class="form-check-inline chk"
                                                            style="transform: scale(1.3);" onclick="fillData();"/> Ramp
                                                     Bot
-                                                    <input id="climber" type="checkbox" class="form-check-inline"
+                                                    <input id="climber" type="checkbox" class="form-check-inline chk"
                                                            style="transform: scale(1.3);" onclick="fillData();"/>
                                                     Climber
-                                                    <input id="climbOther" type="checkbox" class="form-check-inline"
+                                                    <input id="climbOther" type="checkbox" class="form-check-inline chk"
                                                            style="transform: scale(1.3);" onclick="fillData();"/> Climb
                                                     on Other
-                                                    <input id="rampOther" type="checkbox" class="form-check-inline"
+                                                    <input id="rampOther" type="checkbox" class="form-check-inline chk"
                                                            style="transform: scale(1.3);" onclick="fillData();"/> Ramp
                                                     on Other
-                                                    <input id="parkOther" type="checkbox" class="form-check-inline"
+                                                    <input id="parkOther" type="checkbox" class="form-check-inline chk"
                                                            style="transform: scale(1.3);" onclick="fillData();"/> Park
-                                                    <input id="noClimb" type="checkbox" class="form-check-inline"
+                                                    <input id="noClimb" type="checkbox" class="form-check-inline chk"
                                                            style="transform: scale(1.3);" onclick="fillData();"/> None
 
                                                     <br/>
@@ -530,16 +345,6 @@
                                         </form>
                                     </div>
                                     <div class="col-3">
-                                        <center>
-                                            <div style="position: fixed; top: 249px;">
-                                                <p style="font-size: 60pt;"><span id="min">0</span>:<span
-                                                        id="sec">00</span></p>
-                                                <button class="btn btn-success btn-lg" id="start">Start</button>
-                                                <button class="btn btn-danger btn-lg" id="stop" disabled>Stop</button>
-                                                <button class="btn btn-dark btn-lg" id="reset">Reset</button>
-                                            </div>
-                                        </center>
-                                        <br/> <br/>
                                         <center>
                                             <div style="position: fixed; top: 150px; width: 246px;">
                                             <button type="button" id="export" class="btn btn-success btn-md btn-block"
@@ -575,13 +380,15 @@
                                     <td>team #</td>
                                     <td>match #</td>
                                     <td>alliance</td>
-                                    <td>setup</td>
                                     <td>auton</td>
                                     <td>climb type</td>
                                     <td>climb on</td>
 									<td>switch count</td>
+									<td>enemy switch count</td>
 									<td>scale count</td>
 									<td>vault count</td>
+									<td>dropped cube count</td>
+									<td>knocked cube off scale count</td>
                                     <td>comments</td>
                                 </tr>
                                 <tr id="userInputs">
@@ -590,13 +397,15 @@
                                     <td id="teamNumD"></td>
                                     <td id="matchNumD"></td>
                                     <td id="allianceCatD"></td>
-                                    <td id="setupD"></td>
                                     <td id="autonD"></td>
                                     <td id="climbD"></td>
                                     <td id="climbOnD"></td>
 									<td id="switchD"></td>
+									<td id="enemyD"></td>
 									<td id="scaleD"></td>
 									<td id="vaultD"></td>
+									<td id="droppedD"></td>
+									<td id="knockedD"></td>
                                     <td id="commentD"></td>
                                 </tr>
                                 </tbody>

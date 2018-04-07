@@ -1,4 +1,6 @@
-﻿function mainNav(control) {
+﻿var exported = false;
+
+function mainNav(control) {
     if (control === "home") {
         document.getElementById("navBar").innerHTML = "Home";
         document.getElementById("settings").style.display = "none";
@@ -63,26 +65,19 @@
 }
 
 function fillData() {
+	$('input.chk').on('change', function() {
+		$('input.chk').not(this).prop('checked', false);  
+	});
+	
+	$('input.auton').on('change', function() {
+		$('input.auton').not(this).prop('checked', false);  
+	});
+
     document.getElementById("scoutNameD").innerHTML = document.getElementById("scoutName").value.toLowerCase();
     document.getElementById("weekNum").innerHTML = document.getElementById("week").value.toLowerCase();
     document.getElementById("teamNumD").innerHTML = document.getElementById("teams").value;
     document.getElementById("matchNumD").innerHTML = document.getElementById("matchNums").value;
     document.getElementById("allianceCatD").innerHTML = document.getElementById("allianceCat").value;
-
-    if (document.getElementById("firstStart").checked) {
-        document.getElementById("setupD").innerHTML = "1";
-    }
-    else if (document.getElementById("secondStart").checked) {
-        document.getElementById("setupD").innerHTML = "2";
-    }
-    else if (document.getElementById("thirdStart").checked) {
-        document.getElementById("setupD").innerHTML = "3";
-    }
-    else if (document.getElementById("fourthStart").checked) {
-        document.getElementById("setupD").innerHTML = "4";
-    } else {
-        document.getElementById("setupD").innerHTML = "not in play";
-    } 
 
     var strAuton = '',
         noAuto = '',
@@ -97,11 +92,7 @@ function fillData() {
 
     if (document.getElementById("moveAuto").checked) {
         moveAuto = "moved";
-    }
-
-    if (document.getElementById("preloadAuto").checked) {
-        preloadAuto = "pre loaded cube"
-    }
+    }	
 
     strAuton = noAuto + " " + moveAuto + " " + switchAuto + " " + scaleAuto + " " + preloadAuto;
 
@@ -290,41 +281,8 @@ function saveTable() {
     var fullNum = 0;
     var avgVal;
     var counter = 0;
-	
-/*     for (i in avgData) {
-        for (var j = 0; j < avgData[i].length; j++) {
-            var array = avgData[i];
 
-            fullNum += parseInt(array[j]);
-
-            console.log("fullNum: " + fullNum);
-            counter += 1;
-        }
-
-        console.log("fullAfter: " + fullNum);
-        console.log("counter: " + counter);
-        avgVal = parseInt(fullNum / counter);
-
-        if (isNaN(avgVal)) {
-            avgVal = 0;
-        }
-
-        var timeMin = parseInt(avgVal / 60);
-
-
-        var timeSec = parseInt(avgVal % 60);
-
-        if (timeSec <= 9) {
-            timeSec = '0' + timeSec;
-        }
-
-        document.getElementById("titleName").innerHTML += '<td>' + i + '</td>';
-        document.getElementById("userInputs").innerHTML += '<td>' + timeMin + ":" + timeSec + '</td>';
-        fullNum = 0;
-        counter = 0;
-    } */
-
-    var requiredLength = 90;
+    var requiredLength = 15;
 
     if (document.getElementById('dataTable').rows[0].cells.length < requiredLength) {
         var neededLength = requiredLength - document.getElementById('dataTable').rows[0].cells.length;
@@ -345,17 +303,10 @@ function saveTable() {
         filename: 'Team ' + document.getElementById("teams").value + ' Match ' + document.getElementById("matchNums").value,
         exportButtons: false
     });
-
-    instance2 = new TableExport(ExportButtons,{
-        formats: ['txt'],
-        headers: true,
-        filename: 'Team ' + document.getElementById("teams").value + ' Match ' + document.getElementById("matchNums").value + " - Cycles", 
-        exportButtons: false
-     });
 	 
     //                                        // "id" of selector    // format
     exportData = instance.getExportData()['dataTable']['csv'];
-    exportData2 = instance2.getExportData()['timeLogs']['txt'];
+    //exportData2 = instance2.getExportData()['timeLogs']['txt'];
 	//exportData3 = instance3.getExportData()['rawTime']['txt'];
 
     XLSbutton = document.getElementById('export');
@@ -368,10 +319,12 @@ function exportTableStuff() {
 
     //                   // data          // mime              // name              // extension
     instance.export2file(exportData.data, exportData.mimeType, exportData.filename, exportData.fileExtension);
-    instance2.export2file(exportData2.data, exportData2.mimeType, exportData2.filename, exportData2.fileExtension);
+    //instance2.export2file(exportData2.data, exportData2.mimeType, exportData2.filename, exportData2.fileExtension);
 	//instance3.export2file(exportData3.data, exportData3.mimeType, exportData3.filename, exportData3.fileExtension);
 	
     $.notify("File Exported Successfully", "success");
+    exported = true;
+    clearFields();
 }
 
 var ExportPitButtons;
@@ -401,266 +354,132 @@ function exportPitTableStuff() {
 
     //                   // data          // mime              // name              // extension
     instance2.export2file(exportPitData.data, exportPitData.mimeType, exportPitData.filename, exportPitData.fileExtension);
+    clearFields();
     $.notify("File Exported Successfully", "success");
-}
-
-var counter,
-    time = 0,
-    sec = document.getElementById("sec"),
-    min = document.getElementById("min"),
-    start = document.getElementById("start"),
-    reset = document.getElementById("reset"),
-    stop = document.getElementById("stop");
-
-start.addEventListener("click", function () {
-    toggle();
-    counter = setInterval(count, 1000);
-});
-
-stop.addEventListener("click", function () {
-    toggle();
-    clearInterval(counter);
-});
-
-reset.addEventListener("click", function () {
-    time = 0;
-    sec.innerHTML = '0' + time % 60;
-    min.innerHTML = Math.floor(time / 60);
-});
-
-function count() {
-    if (time === 150) {
-        min.innerHTML = '0';
-        sec.innerHTML = '00';
-        toggle();
-        clearInterval(counter);
-    } else {
-        time++;
-
-        if (time % 60 <= 9) {
-            sec.innerHTML = '0' + time % 60;
-        }
-        else {
-            sec.innerHTML = time % 60;
-        }
-        min.innerHTML = Math.floor(time / 60);
-    }
-}
-
-function toggle() {
-    if (start.disabled) {
-        start.disabled = false;
-        stop.disabled = true;
-    } else {
-        start.disabled = true;
-        stop.disabled = false;
-    }
+	clearFields();
 }
 
 var switchcount = 0,
 	scalecount = 0,
-	vaultcount = 0;
+	vaultcount = 0,
+	droppedcount = 0,
+	enemycount = 0,
+	knockedcount = 0;
+	
 
-var startTime,
-    stopTime,
-    startPoint,
-    stopPoint,
-    logPoint = 0,
-    totCycle;
-
-var avgData = new Object();
-avgData['portal 1_switch 1'] = new Array();
-avgData['portal 1_switch 2'] = new Array();
-avgData['portal 1_switch 3'] = new Array();
-avgData['portal 1_switch 4'] = new Array();
-avgData['portal 1_scale 1'] = new Array();
-avgData['portal 1_scale 2'] = new Array();
-avgData['portal 1_exchange zone'] = new Array();
-avgData['portal 2_switch 1'] = new Array();
-avgData['portal 2_switch 2'] = new Array();
-avgData['portal 2_switch 3'] = new Array();
-avgData['portal 2_switch 4'] = new Array();
-avgData['portal 2_scale 1'] = new Array();
-avgData['portal 2_scale 2'] = new Array();
-avgData['portal 2_exchange zone'] = new Array();
-avgData['portal 3_switch 1'] = new Array();
-avgData['portal 3_switch 2'] = new Array();
-avgData['portal 3_switch 3'] = new Array();
-avgData['portal 3_switch 4'] = new Array();
-avgData['portal 3_scale 1'] = new Array();
-avgData['portal 3_scale 2'] = new Array();
-avgData['portal 3_exchange zone'] = new Array();
-avgData['portal 4_switch 1'] = new Array();
-avgData['portal 4_switch 2'] = new Array();
-avgData['portal 4_switch 3'] = new Array();
-avgData['portal 4_switch 4'] = new Array();
-avgData['portal 4_scale 1'] = new Array();
-avgData['portal 4_scale 2'] = new Array();
-avgData['portal 4_exchange zone'] = new Array();
-avgData['exchange zone_switch 1'] = new Array();
-avgData['exchange zone_switch 2'] = new Array();
-avgData['exchange zone_switch 3'] = new Array();
-avgData['exchange zone_switch 4'] = new Array();
-avgData['exchange zone_scale 1'] = new Array();
-avgData['exchange zone_scale 2'] = new Array();
-avgData['cube zone 1_scale 1'] = new Array();
-avgData['cube zone 1_scale 2'] = new Array();
-avgData['cube zone 1_switch 1'] = new Array();
-avgData['cube zone 1_switch 2'] = new Array();
-avgData['cube zone 1_switch 3'] = new Array();
-avgData['cube zone 1_switch 4'] = new Array();
-avgData['cube zone 1_exchange zone'] = new Array();
-avgData['cube zone 2_scale 1'] = new Array();
-avgData['cube zone 2_scale 2'] = new Array();
-avgData['cube zone 2_switch 1'] = new Array();
-avgData['cube zone 2_switch 2'] = new Array();
-avgData['cube zone 2_switch 3'] = new Array();
-avgData['cube zone 2_switch 4'] = new Array();
-avgData['cube zone 2_exchange zone'] = new Array();
-avgData['competitive cubes 1_switch 1'] = new Array();
-avgData['competitive cubes 1_switch 2'] = new Array();
-avgData['competitive cubes 1_switch 3'] = new Array();
-avgData['competitive cubes 1_switch 4'] = new Array();
-avgData['competitive cubes 1_scale 1'] = new Array();
-avgData['competitive cubes 1_scale 2'] = new Array();
-avgData['competitive cubes 1_exchange zone'] = new Array();
-avgData['competitive cubes 2_switch 1'] = new Array();
-avgData['competitive cubes 2_switch 2'] = new Array();
-avgData['competitive cubes 2_switch 3'] = new Array();
-avgData['competitive cubes 2_switch 4'] = new Array();
-avgData['competitive cubes 2_scale 1'] = new Array();
-avgData['competitive cubes 2_scale 2'] = new Array();
-avgData['competitive cubes 2_exchange zone'] = new Array();
-avgData['preloaded_switch 1'] = new Array();
-avgData['preloaded_switch 2'] = new Array();
-avgData['preloaded_switch 3'] = new Array();
-avgData['preloaded_switch 4'] = new Array();
-avgData['preloaded_scale 1'] = new Array();
-avgData['preloaded_scale 2'] = new Array();
-avgData['preloaded_exchange zone'] = new Array();
-avgData['disabled_disabled'] = new Array();
-avgData['cube dropped_switch 1'] = new Array();
-avgData['cube dropped_switch 2'] = new Array();
-avgData['cube dropped_switch 3'] = new Array();
-avgData['cube dropped_switch 4'] = new Array();
-avgData['cube dropped_scale 1'] = new Array();
-avgData['cube dropped_scale 2'] = new Array();
-avgData['cube dropped_exchange zone'] = new Array();
-avgData['floor cube_switch 1'] = new Array();
-avgData['floor cube_switch 2'] = new Array();
-avgData['floor cube_switch 3'] = new Array();
-avgData['floor cube_switch 4'] = new Array();
-avgData['floor cube_scale 1'] = new Array();
-avgData['floor cube_scale 2'] = new Array();
-avgData['feelsbadman_feelsbadman'] = new Array();
+var stopPoint;
 
 function insertTime(logType) {
-    logPoint += 1;
-
-    if (logPoint == 1) {
-        startTime = time;
-        startPoint = logType.toLowerCase();
-        totCycle = logType.toLowerCase();
-        console.log("starttime: " + startTime + " startpoint: " + startPoint);
-		var timeSec;
-		var timeMin;
+	stopPoint = logType.toLowerCase();
 		
-		if (startTime % 60 <= 9) {
-            timeSec = '0' + startTime % 60;
-        }
-        else {
-            timeSec = startTime % 60;
-        }
-
-        timeMin = Math.floor(startTime / 60);
-		
-		document.getElementById("titleName").innerHTML += '<td>' + startPoint + '</td>';
-		document.getElementById("userInputs").innerHTML += '<td>' + timeMin + ':' + timeSec + '</td>';
-		
-        $("#notifbox").notify("Started Cycle", "success");
-        return;
-    }
-
-    if (logPoint == 2) {
-        stopTime = time;
-        stopPoint = logType.toLowerCase();
-        totCycle += "_" + logType.toLowerCase();
-        console.log("stoptime: " + stopTime + " stoppoint: " + stopPoint);
-		
-	    var timeSecRaw;
-		var timeMinRaw;
-		
-		if (stopTime % 60 <= 9) {
-            timeSecRaw = '0' + stopTime % 60;
-        }
-        else {
-            timeSecRaw = stopTime % 60;
-        }
-
-        timeMinRaw = Math.floor(stopTime / 60);
-		
-		document.getElementById("titleName").innerHTML += '<td>' + stopPoint + '</td>';
-		document.getElementById("userInputs").innerHTML += '<td>' + timeMinRaw + ':' + timeSecRaw + '</td>';
-		
-        logPoint = 0;
-
-        var totTime = stopTime - startTime;
-        var timeSec, timeMin;
-        if (totTime % 60 <= 9) {
-            timeSec = '0' + totTime % 60;
-        }
-        else {
-            timeSec = totTime % 60;
-        }
-
-        timeMin = Math.floor(totTime / 60);
-
-        //avgData[totCycle].push(parseInt(totTime));
-		
-		if (stopPoint.includes("switch")) {
+		if (stopPoint.indexOf("alliance") != -1) {
 			console.log("switchcount increased");
 			switchcount += 1;
-		} else if (stopPoint.includes("scale")) {
+		} else if (stopPoint.indexOf("scale") != -1) {
 			console.log("scalecount increased");
 			scalecount += 1;
-		} else if (stopPoint.includes("exchange zone")) {
+		} else if (stopPoint.indexOf("vault") != -1 ) {
 			console.log("vault increased");
 			vaultcount += 1;
+		} else if (stopPoint.indexOf("dropped") != -1) {
+			console.log("Dropped increased");
+			droppedcount += 1;
+		} else if (stopPoint.indexOf("knocked") != -1) {
+			console.log("Knocked increased");
+			knockedcount += 1;
+		} else if (stopPoint.indexOf("enemy") != -1) {
+			console.log("Enemy increased");
+			enemycount += 1;
 		}
 		
 		document.getElementById("switchD").innerHTML = switchcount;
 		document.getElementById("scaleD").innerHTML = scalecount;
 		document.getElementById("vaultD").innerHTML = vaultcount;
-
-        document.getElementById("timeName").innerHTML += '<td>' +  startPoint + '_' + stopPoint + '</td>';
-        document.getElementById("timeCounts").innerHTML += '<td>' +
-            timeMin +
-            ":" +
-            timeSec + '</td>';
-
-        $("#notifbox").notify("Added Log/Ended Cycle", "success");
-    }
-}
+		document.getElementById("droppedD").innerHTML = droppedcount;
+		document.getElementById("knockedD").innerHTML = knockedcount;
+		document.getElementById("enemyD").innerHTML = enemycount;
+		
+		document.getElementById("alliancec").value = switchcount;
+		document.getElementById("scalec").value = scalecount;
+		document.getElementById("vaultc").value = vaultcount;
+		document.getElementById("droppedc").value = droppedcount;
+		document.getElementById("knockedc").value = knockedcount;
+		document.getElementById("enemyc").value = enemycount;
+		
+ }
+ 
+ function deleted(logType) {
+	 	stopPoint = logType.toLowerCase();
+		
+		if (stopPoint.indexOf("alliance") != -1) {
+			console.log("switchcount decreased");
+			switchcount -= 1;
+			if (switchcount == -1) {
+				switchcount = 0;
+			}
+		} else if (stopPoint.indexOf("scale") != -1) {
+			console.log("scalecount decreased");
+			scalecount -= 1;
+			if (scalecount == -1) {
+				scalecount = 0;
+			}
+		} else if (stopPoint.indexOf("vault") != -1 ) {
+			console.log("vault decreased");
+			vaultcount -= 1;
+			if (vaultcount == -1) {
+				vaultcount = 0;
+			}
+		} else if (stopPoint.indexOf("dropped") != -1) {
+			console.log("Dropped decreased");
+			droppedcount -= 1;
+			if (droppedcount == -1) {
+				droppedcount = 0;
+			}
+		} else if (stopPoint.indexOf("knocked") != -1) {
+			console.log("Knocked decreased");
+			knockedcount -= 1;
+			if (knockedcount == -1) {
+				knockedcount = 0;
+			}
+		} else if (stopPoint.indexOf("enemy") != -1) {
+			console.log("Enemy decreased");
+			enemycount -= 1;
+			if (enemycount == -1) {
+				enemycount = 0;
+			}
+		}
+		
+		document.getElementById("switchD").innerHTML = switchcount;
+		document.getElementById("scaleD").innerHTML = scalecount;
+		document.getElementById("vaultD").innerHTML = vaultcount;
+		document.getElementById("droppedD").innerHTML = droppedcount;
+		document.getElementById("knockedD").innerHTML = knockedcount;
+		document.getElementById("enemyD").innerHTML = enemycount;
+		
+		document.getElementById("alliancec").value = switchcount;
+		document.getElementById("scalec").value = scalecount;
+		document.getElementById("vaultc").value = vaultcount;
+		document.getElementById("droppedc").value = droppedcount;
+		document.getElementById("knockedc").value = knockedcount;
+		document.getElementById("enemyc").value = enemycount;
+ }
 
 function resetLog() {
-    if (logPoint == 1) {
-        startTime = 0;
-        startPoint = '';
-        logPoint = 0;
-
-        $.notify("Removed Last Start Point", "warn");
-    }
 }
 
 function clearFields() {
+	if (!exported) {
+	confirm("Are you sure you want to reset? EXPORT FIRST.");
     $('input[type=checkbox]').each(function () {
         this.checked = false;
     });
-
+	}
+	
+	exported = false;
     document.getElementById("otherTeamText").value = " ";
     document.getElementById("commentBox").value = " ";
     console.log("Clearing")
-    var mainCells = 13;
+    var mainCells = 15;
     var totalRows = document.getElementById('dataTable').rows[0].cells.length;
     var titleRow = document.getElementById("titleName");
     var inputRow = document.getElementById("userInputs");
@@ -694,10 +513,23 @@ function clearFields() {
 	switchcount = 0;
 	scalecount = 0;
 	vaultcount = 0;
+	droppedcount = 0;
+	knockedcount = 0;
+	enemycount = 0;
 	
 	document.getElementById("switchD").innerHTML = switchcount;
 	document.getElementById("scaleD").innerHTML = scalecount;
 	document.getElementById("vaultD").innerHTML = vaultcount;
+	document.getElementById("droppedD").innerHTML = droppedcount;
+	document.getElementById("knockedD").innerHTML = knockedcount;
+	document.getElementById("enemyD").innerHTML = enemycount;
+	
+	document.getElementById("alliancec").value = switchcount;
+	document.getElementById("scalec").value = scalecount;
+	document.getElementById("vaultc").value = vaultcount;
+	document.getElementById("droppedc").value = droppedcount;
+	document.getElementById("knockedc").value = knockedcount;
+	document.getElementById("enemyc").value = enemycount;
 	
     resetLog();
     fillData();
